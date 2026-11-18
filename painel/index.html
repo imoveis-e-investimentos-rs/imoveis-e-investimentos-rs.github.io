@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://viacep.com.br; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>PRO IMOB · Área do corretor</title>
 <meta name="theme-color" content="#3A57A8">
 <link rel="icon" href="../icon-192.png">
@@ -114,7 +116,13 @@ const num=v=>Number(String(v==null?'':v).replace(/[^\d,]/g,'').replace(',','.'))
 const brl=v=>v?'R$ '+Number(v).toLocaleString('pt-BR',{maximumFractionDigits:0}):'';
 const mil=v=>v?Number(v).toLocaleString('pt-BR'):'';
 const ls={get(k){try{return localStorage.getItem('painel.'+k)}catch(e){return null}},set(k,v){try{v==null?localStorage.removeItem('painel.'+k):localStorage.setItem('painel.'+k,v)}catch(e){}}};
-let TOKEN=ls.get('token'),DB={atualizado:'',imoveis:[]},SHA=null,ED=null,FILTRO='todos',CAT=null;
+ls.set('token',null);let TOKEN=null,DB={atualizado:'',imoveis:[]},SHA=null,ED=null,FILTRO='todos',CAT=null;
+async function guardarToken(tk,pw){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),k=await derivar(pw,salt,IT);const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},k,new TextEncoder().encode(tk)));ls.set('tokenEnc',JSON.stringify({s:u8b64(salt),iv:u8b64(iv),d:u8b64(ct),it:IT}))}
+async function abrirToken(pw){const j=ls.get('tokenEnc');if(!j)return null;const o=JSON.parse(j);const k=await derivar(pw,b64u8(o.s),o.it);try{return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:b64u8(o.iv)},k,b64u8(o.d)))}catch(e){throw new Error('Senha incorreta.')}}
+let TIMER=null;function bloquear(msg){TOKEN=null;KEY=null;PRIV=null;DB={atualizado:'',imoveis:[]};ED=null;telaEntrar();if(msg)toast(msg,6000)}
+function vigiar(){clearTimeout(TIMER);if(KEY)TIMER=setTimeout(()=>bloquear('Painel bloqueado após 20 minutos sem uso. Digite a senha para continuar.'),20*60*1000)}
+['click','keydown','touchstart'].forEach(ev=>document.addEventListener(ev,vigiar,{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(document.hidden)vigiar()});
 const STL={ativo:'No ar',reservado:'Reservado',pausado:'Pausado',vendido:'Vendido',alugado:'Alugado',arquivado:'Na lixeira'};
 const PRIVARQ='privado.enc.json';let PRIV=null,PSHA=null,KEY=null,SALT=null,PRE=null;
 (()=>{const h=location.hash;if(!/^#novo\?/.test(h))return;const q=new URLSearchParams(h.slice(6));const pub={},priv={};
@@ -122,16 +130,16 @@ const PRIVARQ='privado.enc.json';let PRIV=null,PSHA=null,KEY=null,SALT=null,PRE=
  ['prop','tel','email','end','ref','obs','lead','cep'].forEach(k=>{if(q.get(k))priv[k]=q.get(k)});PRE={pub,priv};history.replaceState(null,'',location.pathname)})();
 const u8b64=u=>{let r='';for(let i=0;i<u.length;i+=0x8000)r+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(r)};
 const b64u8=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-async function derivar(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:250000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+const IT=600000;async function derivar(pw,salt,it){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:it||IT,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
 async function abrirCofre(pw){
   const r=await gh(PRIVARQ);
-  if(!r){SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derivar(pw,SALT);PRIV={};PSHA=null;return 'novo'}
-  const o=JSON.parse(unb64(r.content));SALT=b64u8(o.s);KEY=await derivar(pw,SALT);
-  try{const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64u8(o.iv)},KEY,b64u8(o.d));PRIV=JSON.parse(new TextDecoder().decode(pt));PSHA=r.sha;return 'ok'}catch(e){KEY=null;throw new Error('Senha dos dados privados incorreta.')}
+  if(!r){SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derivar(pw,SALT,IT);PRIV={};PSHA=null;return 'novo'}
+  const o=JSON.parse(unb64(r.content));SALT=b64u8(o.s);KEY=await derivar(pw,SALT,o.it||250000);
+  try{const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64u8(o.iv)},KEY,b64u8(o.d));PRIV=JSON.parse(new TextDecoder().decode(pt));PSHA=r.sha;if((o.it||250000)<IT){SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derivar(pw,SALT,IT);await gravarCofre('Reforça a criptografia dos dados privados')}return 'ok'}catch(e){KEY=null;throw new Error('Senha dos dados privados incorreta.')}
 }
 async function gravarCofre(msg){
   const iv=crypto.getRandomValues(new Uint8Array(12));const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},KEY,new TextEncoder().encode(JSON.stringify(PRIV))));
-  const body={message:msg,content:b64(JSON.stringify({v:1,alg:'PBKDF2-SHA256-250k/AES-GCM',s:u8b64(SALT),iv:u8b64(iv),d:u8b64(ct)})),branch:BR};if(PSHA)body.sha=PSHA;
+  const body={message:msg,content:b64(JSON.stringify({v:1,alg:'PBKDF2-SHA256/AES-GCM-256',it:IT,s:u8b64(SALT),iv:u8b64(iv),d:u8b64(ct)})),branch:BR};if(PSHA)body.sha=PSHA;
   const r=await gh(PRIVARQ,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});PSHA=r.content.sha;
 }
 const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código na Innovar / Jetimob'],['lead','Lead de origem (PRO IMOBILIÁRIA)'],['obs','Observações internas']];
@@ -169,9 +177,9 @@ function telaEntrar(){
   $('#app').innerHTML=`<div class="card g" style="max-width:640px;margin:20px auto">
    <h2 style="font-size:30px">Entrar no painel</h2>
    <p class="muted" style="margin:0">Aqui você cadastra, edita e tira do ar os imóveis que aparecem no seu site. Para salvar, o painel usa uma chave de acesso do GitHub que fica guardada <b>só neste aparelho</b>, nunca no site.</p>
-   <label>Chave de acesso (token do GitHub)<input id="tk" type="password" autocomplete="off" placeholder="github_pat_..."></label>
-   <label>Senha dos dados privados<input id="pw" type="password" autocomplete="off" placeholder="mínimo 8 caracteres"></label>
-   <p class="small muted" style="margin:-6px 0 0">Endereço, proprietário, chave e observações ficam criptografados com essa senha e só aparecem aqui no painel, nunca para o cliente. Na primeira vez você cria a senha. Guarde-a bem: sem ela esses dados não podem ser recuperados.</p>
+   ${ls.get('tokenEnc')?'<p class="hint" id="tkSalvo" style="margin:0">🔒 Chave do GitHub guardada neste aparelho, criptografada com a sua senha. <a href="#" id="tkTroca">Usar outra chave</a></p>':''}<label id="tkBox" ${ls.get('tokenEnc')?'hidden':''}>Chave de acesso (token do GitHub)<input id="tk" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_..."></label>
+   <label>Senha dos dados privados<input id="pw" type="password" autocomplete="current-password" placeholder="mínimo 12 caracteres (use uma frase)"></label>
+   <p class="small muted" style="margin:-6px 0 0">A mesma senha protege a chave do GitHub neste aparelho e os dados privados (endereço, proprietário, chave e observações), que só aparecem aqui no painel. Na primeira vez você cria a senha. Guarde-a bem: sem ela os dados privados não podem ser recuperados. O painel se bloqueia sozinho após 20 minutos sem uso.</p>
    <button class="btn pri" id="bEntrar">Entrar</button>
    <div class="hint"><b>Primeira vez? Crie a chave em 2 minutos:</b><ol class="passos">
     <li>No GitHub da conta <b>imoveis-e-investimentos-rs</b>, abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings › Developer settings › Fine-grained tokens › Generate new token</a>.</li>
@@ -179,9 +187,9 @@ function telaEntrar(){
     <li>Repository access: <b>Only select repositories</b> › <b>imoveis-e-investimentos-rs.github.io</b>.</li>
     <li>Permissions › Repository permissions › <b>Contents: Read and write</b>. Nada mais.</li>
     <li>Gere, copie e cole aqui. Não envie essa chave para ninguém.</li></ol></div></div>`;
-  if(TOKEN){$('#tk').value=TOKEN}
-  $('#bEntrar').onclick=async()=>{const v=$('#tk').value.trim(),pw=$('#pw').value;if(!v)return toast('Cole a chave de acesso.');if(pw.length<8)return toast('A senha dos dados privados precisa ter pelo menos 8 caracteres.');TOKEN=v;const b=$('#bEntrar');b.disabled=true;b.textContent='Verificando…';
-    try{await carregar();const st=await abrirCofre(pw);if(st==='novo'&&prompt('Primeiro acesso: digite a senha de novo para confirmar')!==pw){KEY=null;throw new Error('As senhas não conferem.')}ls.set('token',v);telaLista();if(PRE){telaForm(null);toast('Dados do lead do PRO IMOBILIÁRIA carregados. Complete fotos e valores e salve.',6000)}}catch(e){TOKEN=null;toast(e.message,6000);b.disabled=false;b.textContent='Entrar'}};
+  const tt=$('#tkTroca');if(tt)tt.onclick=e=>{e.preventDefault();ls.set('tokenEnc',null);$('#tkSalvo').remove();$('#tkBox').hidden=false};
+  $('#bEntrar').onclick=async()=>{let v=$('#tk').value.trim();const pw=$('#pw').value;if(pw.length<12)return toast('Use uma senha com pelo menos 12 caracteres. Dica: uma frase, como “Casa-azul-em-Sapucaia-2026”.');if(!v&&!ls.get('tokenEnc'))return toast('Cole a chave de acesso do GitHub.');if(v&&!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(v))return toast('Isso não parece uma chave do GitHub (começa com github_pat_). Não cole senhas aqui.');const b=$('#bEntrar');b.disabled=true;b.textContent='Verificando…';
+    try{if(!v)v=await abrirToken(pw);TOKEN=v;await carregar();const st=await abrirCofre(pw);if(st==='novo'&&prompt('Primeiro acesso: digite a senha de novo para confirmar')!==pw){KEY=null;throw new Error('As senhas não conferem.')}await guardarToken(v,pw);$('#pw').value='';vigiar();telaLista();if(PRE){telaForm(null);toast('Dados do lead do PRO IMOBILIÁRIA carregados. Complete fotos e valores e salve.',6000)}}catch(e){TOKEN=null;toast(e.message,6000);b.disabled=false;b.textContent='Entrar'}};
 }
 function telaLista(){
   $('#bSair').hidden=false;ED=null;
@@ -316,7 +324,7 @@ async function salvar(){
     ED.novas=[];PRE=null;toast('Salvo! O site atualiza em cerca de 1 minuto.',5000);FILTRO='todos';telaLista();
   }catch(e){toast(e.message,7000);b.disabled=false;b.textContent='Salvar e publicar'}
 }
-$('#bSair').onclick=()=>{if(!confirm('Sair e apagar a chave deste aparelho?'))return;ls.set('token',null);TOKEN=null;KEY=null;PRIV=null;telaEntrar()};
+$('#bSair').onclick=()=>{const apagar=confirm('Sair do painel. Também apagar a chave do GitHub guardada neste aparelho?\n\nOK = sair e apagar · Cancelar = só sair');if(apagar)ls.set('tokenEnc',null);bloquear('Você saiu do painel.')};
 telaEntrar();
 })();
 </script>
