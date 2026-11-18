@@ -464,6 +464,58 @@ h1,h2,.hero.pmh h1,.agv h3,footer h3{font-family:var(--f-serif);font-weight:600;
 @media (max-width:1180px){.brand.pm .bt>b{font-size:20px}}
 @media (max-width:520px){.brand.pm{flex:1 1 auto;min-width:0}.brand.pm .bt>b{font-size:14px;letter-spacing:.2px}.brand.pm .bt>span{font-size:9.4px}}
 @media (max-width:370px){.brand.pm .bt>b{font-size:12.5px}}
+
+/* ===== VISUAL 5 (18/11/2026): sombreamento e profundidade 3D ===== */
+.pmright{margin-left:auto;display:grid;justify-items:center;gap:4px}
+.pmright .pmnav{margin-left:0}
+.pminfo{display:grid;text-align:center;text-decoration:none;gap:0;padding-top:4px;border-top:1px solid var(--line);width:100%}
+.pminfo b{font-family:var(--f-caps);font-size:14px;font-weight:600;letter-spacing:1px;color:#1B2333;text-transform:uppercase}
+.pminfo small{font-size:10.5px;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+.pminfo:hover b{color:#4E71CF}
+@media (max-width:980px){.pmright{display:none}}
+/* cabeçalho em camadas */
+.top{box-shadow:0 1px 0 #D9E0EC,0 8px 24px -10px rgba(37,60,130,.25);position:sticky}
+.tbar{box-shadow:inset 0 -1px 0 rgba(255,255,255,.18)}
+/* símbolo da logo em relevo */
+.brand.pm .mono.lgm{box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 -2px 0 rgba(0,0,0,.18) inset,0 6px 14px -4px rgba(37,60,130,.45),0 2px 4px rgba(0,0,0,.12);transform:perspective(400px) rotateY(-6deg);transition:transform .35s ease}
+.brand.pm:hover .mono.lgm{transform:perspective(400px) rotateY(0) translateY(-2px)}
+.brand.pm .bt>b{text-shadow:0 1px 0 #fff,0 2px 3px rgba(37,60,130,.18)}
+.pmnav a b{text-shadow:0 1px 0 #fff,0 2px 4px rgba(78,113,207,.25);transition:transform .2s ease}
+.pmnav a:hover b{transform:translateY(-2px)}
+/* título em 3D como o "Find Your Home Now" da referência */
+.hero.pmh h1{text-shadow:0 1px 0 #DDE7FB,0 2px 0 #C3D3F5,0 3px 0 #A9BFEE,0 4px 0 #8FAAE6,0 5px 0 #7A97DC,0 10px 14px rgba(20,40,100,.35),0 22px 40px rgba(20,40,100,.28)}
+.hero.pmh .lead{text-shadow:0 1px 2px rgba(20,40,100,.35)}
+.hero.pmh{box-shadow:inset 0 -40px 60px -40px rgba(255,255,255,.6)}
+/* caixa de busca flutuando em vidro, com borda de luz */
+.hero.pmh .search{background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(240,245,253,.88));border:1px solid rgba(255,255,255,.9);box-shadow:0 1px 0 #fff inset,0 30px 60px -20px rgba(20,40,100,.45),0 12px 24px -12px rgba(20,40,100,.3),0 0 0 6px rgba(255,255,255,.18);transform:perspective(1200px) rotateX(2deg);transform-origin:top center}
+.hero.pmh .search select,.hero.pmh .search input{box-shadow:inset 0 2px 4px rgba(37,60,130,.08);border-color:#D3DCEE}
+.gocol{display:grid;gap:6px;align-self:end}
+.golinks{display:flex;justify-content:space-between;gap:10px}
+.golinks a{font-size:12px;color:#4E71CF;text-decoration:none;cursor:pointer;white-space:nowrap}
+.golinks a:hover{text-decoration:underline}
+/* botões com volume */
+.btn{transition:transform .15s ease,box-shadow .15s ease,background .15s ease}
+.btn.or,.btn.pri,.hero.pmh .search .go{background:linear-gradient(180deg,#6E8FE0 0%,#4E71CF 55%,#3F61BE 100%);border-color:#3A57A8;color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 -2px 0 rgba(0,0,0,.15) inset,0 6px 14px -6px rgba(37,60,130,.6)}
+.btn.or:hover,.btn.pri:hover,.hero.pmh .search .go:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 -2px 0 rgba(0,0,0,.15) inset,0 12px 22px -8px rgba(37,60,130,.65);background:linear-gradient(180deg,#7B9AE6,#5577D3 55%,#4566C3)}
+.btn.or:active,.btn.pri:active,.hero.pmh .search .go:active{transform:translateY(1px);box-shadow:inset 0 2px 6px rgba(0,0,0,.25)}
+.btn:not(.or):not(.pri){box-shadow:0 1px 0 #fff inset,0 3px 8px -4px rgba(37,60,130,.25)}
+.btn:not(.or):not(.pri):hover{transform:translateY(-1px)}
+/* cartões de imóvel com profundidade e inclinação suave */
+.card{box-shadow:0 1px 0 #fff inset,0 2px 4px rgba(37,60,130,.06),0 14px 30px -14px rgba(37,60,130,.35);border-color:#DCE4F3;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:perspective(900px) rotateX(3deg) translateY(-6px);box-shadow:0 2px 4px rgba(37,60,130,.08),0 28px 50px -18px rgba(37,60,130,.5)}
+.card .ph{overflow:hidden}
+.card .ph img{transition:transform .6s ease}
+.card:hover .ph img{transform:scale(1.06)}
+.card .tag{box-shadow:0 4px 10px -2px rgba(20,40,100,.45)}
+.chip{box-shadow:0 1px 0 #fff inset,0 3px 8px -5px rgba(37,60,130,.35)}
+/* blocos em relevo */
+.sobre,.agv,.panel,.style{box-shadow:0 1px 0 #fff inset,0 18px 40px -22px rgba(37,60,130,.4),0 2px 6px rgba(37,60,130,.06)}
+.sobre .av{box-shadow:0 0 0 2px #4E71CF,0 18px 30px -10px rgba(37,60,130,.55)}
+.iscab{box-shadow:0 24px 50px -24px rgba(37,60,130,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+.blk-head h2{text-shadow:0 1px 0 #fff,0 3px 6px rgba(37,60,130,.15)}
+footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
+@media (prefers-reduced-motion:reduce){.card,.card:hover,.btn,.brand.pm .mono.lgm{transition:none;transform:none!important}.hero.pmh .search{transform:none}}
+@media (max-width:860px){.hero.pmh .search{transform:none}.gocol{grid-column:1/-1}.golinks{justify-content:center;gap:24px}}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -481,12 +533,12 @@ h1,h2,.hero.pmh h1,.agv h3,footer h3{font-family:var(--f-serif);font-weight:600;
 <div class="instbar" id="instBar" role="region" aria-label="Instalar app"><span>📲 Tenha o app PROIMOB no seu celular</span><button type="button" class="ib-go" data-instalar="1">Instalar</button><button type="button" class="ib-x" id="instX" aria-label="Fechar">×</button></div>
 <header class="top"><div class="tbar"><div class="tin"><span>WhatsApp (51) 98416-8848 · CRECI-RS 057.384</span><nav aria-label="Atalhos"><a data-go="inicio">Início</a><a href="./guias/">Guias das cidades</a><a data-go="descubra">Quanto posso financiar</a><a href="#" data-wa="geral">Contato</a></nav></div></div><div class="wrap">
   <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono lgm" aria-hidden="true"><img src="logo-anderson.png" alt=""></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
-  <nav class="nav pmnav" aria-label="Principal">
+  <div class="pmright"><nav class="nav pmnav" aria-label="Principal">
     <a href="#comprar" data-go="busca" data-tr="venda"><b>Comprar</b><small>Encontre seu imóvel</small></a>
     <a href="#" data-lead="vender"><b>Vender</b><small>Agenciar meu imóvel</small></a>
     <a href="#alugar" data-go="busca" data-tr="aluguel"><b>Alugar</b><small>Imóveis para alugar</small></a>
     <a href="#consorcio" data-go="consorcio"><b>Cartas de crédito</b><small>Consórcio e investimentos</small></a>
-  </nav>
+  </nav><a class="pminfo" href="./guias/"><b>Informações imobiliárias da região</b><small>Guias de cidades e bairros do Vale dos Sinos e da Grande Porto Alegre</small></a></div>
   <button class="menu-btn" type="button" data-menu="1" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div></header>
 <div class="drawer" id="drawer" hidden><button class="scrim" type="button" data-menu="0" aria-label="Fechar menu"></button>
@@ -624,7 +676,7 @@ function buscaBox(){
     <div class="sgrid"><label>Cidade<select id="s_cid"><option value="">Todas da região</option>${CFG.cidades.map(c=>`<option ${S.cid===c?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
     <label>Tipo de imóvel<select id="s_tipo"><option value="">Todos os imóveis</option>${['Apartamento','Casa','Terreno','Comercial','Rural'].map(t=>`<option ${S.tipo===t?'selected':''}>${t}</option>`).join('')}</select></label>
     <label>Até quanto?<select id="s_max"><option value="0">Qualquer valor</option>${(S.tr==='aluguel'?[1500,2500,4000,7000]:[200000,275000,400000,600000,900000,1500000]).map(v=>`<option value="${v}" ${S.max===v?'selected':''}>${brl(v)}</option>`).join('')}</select></label>
-    <button class="btn or go" type="submit">Buscar</button></div></form>`;
+    <div class="gocol"><button class="btn or go" type="submit">Buscar</button><div class="golinks"><a data-go="busca" data-tr="${S.tr==='aluguel'?'aluguel':'venda'}">Busca avançada</a><a href="./guias/">Guia por cidade</a></div></div></div></form>`;
 }
 function railLanc(l){return l.length?railW(l.map(cardLanc).join('')):'<div class="empty">Sem lançamentos no momento.</div>'}
 function cardLanc(e){

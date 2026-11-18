@@ -154,3 +154,10 @@ footer a{display:block;color:#C9D3EA;text-decoration:none;padding:3px 0;font-siz
 .top .brand span{white-space:normal}
 .top .brand b{font-weight:600}
 .hero h1,h2{font-weight:600}
+/* Visual 5: sombreamento e profundidade */
+.top{box-shadow:0 8px 24px -10px rgba(37,60,130,.25)}
+.hero h1{text-shadow:0 1px 0 #DDE7FB,0 2px 0 #C3D3F5,0 3px 0 #A9BFEE,0 4px 0 #8FAAE6,0 10px 14px rgba(20,40,100,.35)}
+.btn.or{background:linear-gradient(180deg,#6E8FE0,#4E71CF 55%,#3F61BE);border-color:#3A57A8;box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 6px 14px -6px rgba(37,60,130,.6)}
+.hero .btn.or{background:#fff;color:#3A57A8}
+.btn{box-shadow:0 3px 8px -4px rgba(37,60,130,.3);transition:transform .15s}.btn:hover{transform:translateY(-2px)}
+.mcard,.faq details,.panel{box-shadow:0 14px 30px -16px rgba(37,60,130,.35)}
