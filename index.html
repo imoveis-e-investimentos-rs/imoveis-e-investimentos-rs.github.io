@@ -557,6 +557,8 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 .invest .btn.or:hover,.invest .btn.pri:hover{background:linear-gradient(180deg,#FFE9A3,#F5CB62 45%,#D4A537)}
 .invest .cons .out,.invest .cons [id^="cs_out"],.invest .cons b{color:#F7D774}
 .invest input:focus,.invest select:focus{outline:2px solid #F2C14E}
+/* fundo de mercado (gráfico de velas e tendência de alta) no setor de investimentos */
+.invest::before{background:url("logos/fundo-investimentos.svg") center/cover no-repeat,repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 2px,transparent 2px 26px);opacity:1;mask-image:linear-gradient(90deg,rgba(0,0,0,.55),#000 60%);-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.55),#000 60%)}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
