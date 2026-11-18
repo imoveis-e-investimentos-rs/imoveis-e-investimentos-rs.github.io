@@ -521,6 +521,30 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 .brand.pm .mono.lgm img{position:static;width:100%;height:100%;object-fit:contain;left:auto;top:auto;filter:drop-shadow(0 1px 0 rgba(255,255,255,.8)) drop-shadow(0 4px 6px rgba(37,60,130,.35)) drop-shadow(0 1px 1px rgba(37,60,130,.25))}
 .brand.pm:hover .mono.lgm{transform:translateY(-2px)}
 @media (max-width:520px){.brand.pm .mono.lgm{width:48px;height:40px}.brand.pm .mono.lgm img{width:100%;left:auto;top:auto}}
+/* variações da logo */
+.brand.pm .mono.lgm img{filter:none}
+.lgcons{float:right;width:132px;height:auto;border-radius:12px;margin:0 0 10px 16px;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
+.cons{position:relative}
+.lgfoot{width:84px;height:auto;border-radius:12px;display:block;margin-bottom:10px;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.lgsig{width:112px;height:auto;margin-left:auto;border-radius:8px}
+@media (max-width:760px){.lgcons{width:96px}.lgsig{margin:8px auto 0;width:120px}}
+/* SETOR DE INVESTIMENTOS: azul-marinho e logo com seta, só aqui */
+.invest{background:radial-gradient(120% 140% at 85% 0%,#14306E 0%,#0A1E4A 45%,#001029 100%);color:#fff;padding-block:56px;position:relative;overflow:hidden;box-shadow:inset 0 14px 30px -18px rgba(0,0,0,.6),inset 0 -14px 30px -18px rgba(0,0,0,.6)}
+.invest::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 26px);pointer-events:none}
+.invest .wrap{position:relative;display:grid;gap:26px}
+.invest.pg{padding-block:20px 56px;min-height:60vh}
+.invest .crumb,.invest .crumb a{color:#AFC4F0}
+.invhead{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.invhead img{width:150px;height:auto;border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 22px 40px -14px rgba(0,0,0,.8)}
+.invhead .eyebrow{color:#FF9A3C}
+.invhead h2{color:#fff;font-size:clamp(30px,3.8vw,46px);text-shadow:0 3px 10px rgba(0,0,0,.45)}
+.invhead p:not(.eyebrow){color:#C9D3EA;margin:6px 0 0;max-width:62ch}
+.invest .cons{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 60px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.08)}
+.invest .cons .eyebrow{color:#FF9A3C}
+.invest .btn.or,.invest .btn.pri{background:linear-gradient(180deg,#FFA54D,#F07F1A 60%,#D96A0A);border-color:#C55E06;box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 8px 18px -8px rgba(240,127,26,.7)}
+@media (max-width:640px){.invhead{grid-template-columns:1fr;text-align:center;justify-items:center}.invhead img{width:120px}}
+.invest input,.invest select{color:#1B2333!important;background:#fff;font-weight:600}
+.invest label{color:#C9D3EA!important}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -537,7 +561,7 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 
 <div class="instbar" id="instBar" role="region" aria-label="Instalar app"><span>📲 Tenha o app PROIMOB no seu celular</span><button type="button" class="ib-go" data-instalar="1">Instalar</button><button type="button" class="ib-x" id="instX" aria-label="Fechar">×</button></div>
 <header class="top"><div class="tbar"><div class="tin"><span>WhatsApp (51) 98416-8848 · CRECI-RS 057.384</span><nav aria-label="Atalhos"><a data-go="inicio">Início</a><a href="./guias/">Guias das cidades</a><a data-go="descubra">Quanto posso financiar</a><a href="#" data-wa="geral">Contato</a></nav></div></div><div class="wrap">
-  <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono lgm" aria-hidden="true"><img src="logo-simbolo.png" alt="" width="240" height="192"></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
+  <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono lgm" aria-hidden="true"><img src="logos/geral-simbolo.png" alt="" width="320" height="254"></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
   <div class="pmright"><nav class="nav pmnav" aria-label="Principal">
     <a href="#comprar" data-go="busca" data-tr="venda"><b>Comprar</b><small>Encontre seu imóvel</small></a>
     <a href="#" data-lead="vender"><b>Vender</b><small>Agenciar meu imóvel</small></a>
@@ -555,7 +579,7 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 <main id="app"><div class="wrap" style="padding-block:40px"><p class="muted">Carregando…</p></div></main>
 
 <footer><div class="wrap">
-  <div><h3>PROIMOB INVESTIMENTOS</h3><p class="small" style="margin:0">Imóveis / Cartas de crédito e Investimentos com segurança e confiança. Sapucaia do Sul, Vale dos Sinos e Grande Porto Alegre.</p></div>
+  <div><img class="lgfoot" src="logos/imob-simbolo.png" alt="" width="320" height="250" loading="lazy"><h3>PROIMOB INVESTIMENTOS</h3><p class="small" style="margin:0">Imóveis / Cartas de crédito e Investimentos com segurança e confiança. Sapucaia do Sul, Vale dos Sinos e Grande Porto Alegre.</p></div>
   <div><h3>Encontre</h3><a data-go="busca" data-tr="venda">Comprar</a><a data-go="busca" data-tr="aluguel">Alugar</a><a data-go="busca" data-tr="venda" data-max="275000">Até R$ 275 mil (MCMV)</a><a data-go="favoritos">Meus favoritos</a><a href="./guias/" style="cursor:pointer">Guias das cidades</a><a href="#" data-instalar="1">📲 Instalar o app</a></div>
   <div><h3>Ferramentas</h3><a data-go="simular">Simular financiamento</a><a data-go="consorcio">Consórcio sem juros</a><a data-lead="vender">Quero vender meu imóvel</a><a data-lead="avaliar">Agenciar meu imóvel</a><a href="./painel/">Área do corretor</a></div>
   <div><h3>Contato</h3><p class="small" style="margin:0">Anderson Alves<br>Corretor de Imóveis · <span class="creci">CRECI-RS 057.384</span><br>WhatsApp <span style="user-select:all">(51) 98416-8848</span><br>Innovar Imobiliária · CRECI 25.520-J<br>Av. Feitoria, 178 · São Leopoldo/RS</p></div>
@@ -670,8 +694,9 @@ function vInicio(){
   ${parecidos.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Baseado no que você viu</p><h2>Parecidos em ${esc(base.cid)}</h2></div></div>${rail(parecidos)}</div></section>`:''}
   <section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Onde atendo</p><h2>Vale dos Sinos e Grande Porto Alegre</h2></div><a class="btn sm" href="./guias/">Guias das cidades</a></div>
     <div class="chips">${CFG.cidades.map(c=>`<a class="chip" href="./cidades/${c.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,'-')}/">${esc(c)}</a>`).join('')}</div></div></section>
-  <section class="blk"><div class="wrap"><div class="sobre"><div class="av"><img src="anderson-retrato.jpg" alt="Anderson Alves" loading="lazy" width="1086" height="1448"></div><div><p class="eyebrow">Seu corretor</p><h2>Anderson Alves, Corretor Especialista</h2><p>Corretor da Innovar Imobiliária, com sede em São Leopoldo. Atendo quem quer comprar, vender ou alugar no Vale dos Sinos e na Grande Porto Alegre, com análise de crédito, simulação de financiamento e acompanhamento até a entrega das chaves.</p><ul><li>Simulação com FGTS, Minha Casa Minha Vida e financiamento</li><li>Agenciamento em parceria para proprietários</li><li>Documentação acompanhada até a escritura</li><li>Atendimento direto pelo WhatsApp</li></ul><div class="row"><a class="btn or" href="#" data-wa="geral">Conversar no WhatsApp</a><button class="btn" type="button" data-lead="avaliar">Anunciar meu imóvel</button></div></div></div></div></section>
-  <section class="blk"><div class="wrap two">${vSimBox()}${vConsBox()}</div></section>
+  <section class="blk"><div class="wrap"><div class="sobre"><div class="av"><img src="anderson-retrato.jpg" alt="Anderson Alves" loading="lazy" width="1086" height="1448"></div><div><p class="eyebrow">Seu corretor</p><h2>Anderson Alves, Corretor Especialista</h2><p>Corretor da Innovar Imobiliária, com sede em São Leopoldo. Atendo quem quer comprar, vender ou alugar no Vale dos Sinos e na Grande Porto Alegre, com análise de crédito, simulação de financiamento e acompanhamento até a entrega das chaves.</p><ul><li>Simulação com FGTS, Minha Casa Minha Vida e financiamento</li><li>Agenciamento em parceria para proprietários</li><li>Documentação acompanhada até a escritura</li><li>Atendimento direto pelo WhatsApp</li></ul><div class="row"><a class="btn or" href="#" data-wa="geral">Conversar no WhatsApp</a><button class="btn" type="button" data-lead="avaliar">Anunciar meu imóvel</button><img class="lgsig" src="logos/geral-completa.png" alt="Corretor Especialista Anderson Alves" width="600" height="600" loading="lazy"></div></div></div></div></section>
+  <section class="blk"><div class="wrap">${vSimBox()}</div></section>
+  ${vInvest()}
 `;
 }
 function heroBg(){const f=IM.find(i=>(i.img||[]).length);const u=f&&(f.img[0][1]||f.img[0][0]);return u?`style="--hbg:url('${esc(u)}')"`:''}
@@ -769,8 +794,8 @@ function calcSim(){
 
 /* ======== CONSÓRCIO ======== */
 function vConsBox(){
-  return `<div class="cons"><svg class="arrow" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 90 L80 20 M80 20 H45 M80 20 V55" fill="none" stroke="#E98018" stroke-width="12" stroke-linecap="round"/></svg>
-  <p class="eyebrow">Sem juros de banco</p><h2>Consórcio para imóvel, carro ou empresa</h2>
+  return `<div class="cons">
+  <p class="eyebrow">Cartas de crédito · sem juros de banco</p><h2>Consórcio para imóvel, carro ou empresa</h2>
   <p>Planeje a compra com parcelas menores que um financiamento, use o lance para antecipar e aproveite cartas já contempladas quando precisar do crédito agora.</p>
   <div class="simgrid" style="max-width:420px"><label style="color:#C9D3EA">Crédito desejado<input id="cs_v" inputmode="numeric" value="${mil(LS.get('csV',300000))}"></label><label style="color:#C9D3EA">Prazo<select id="cs_p">${[200,180,150,120].map(n=>`<option value="${n}">${n} meses</option>`).join('')}</select></label></div>
   <div id="csOut" style="font-family:var(--f-display);font-size:30px;font-weight:800"></div>
@@ -782,7 +807,7 @@ function calcCons(){const o=$('#csOut');if(!o)return;const v=num($('#cs_v').valu
 /* ======== OUTRAS ROTAS ======== */
 function vLanc(){return `<div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Lançamentos</span></nav><div class="blk-head"><div><p class="eyebrow">${LA.length} empreendimentos</p><h2>Lançamentos e imóveis na planta</h2></div></div><div class="grid">${LA.map(cardLanc).join('')}</div>
   <p class="small muted" style="margin-top:14px">Material e condições conforme a construtora. Peça a tabela atualizada e o registro de incorporação ao corretor.</p></div>`}
-function vSimular(){return `<div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Simular</span></nav><div class="two">${vSimBox()}${vConsBox()}</div></div>`}
+function vSimular(){return `<div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Simular</span></nav>${vSimBox()}</div>${vInvest()}`}
 function vFav(){const L=favs().map(c=>BY[c]).filter(Boolean);return `<div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Favoritos</span></nav><div class="blk-head"><div><p class="eyebrow">${L.length} salvos neste aparelho</p><h2>Meus favoritos</h2></div>${L.length?`<button class="btn or sm" data-lead="favoritos">Enviar favoritos ao corretor</button>`:''}</div>${L.length?`<div class="grid">${L.map(i=>card(i)).join('')}</div>`:'<div class="empty">Toque no coração de um imóvel para guardá-lo aqui.</div>'}</div>`}
 function vPriv(){return `<div class="wrap" style="max-width:760px"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Privacidade</span></nav><h2>Política de privacidade</h2>
   <div style="display:grid;gap:10px;margin-top:12px">
@@ -793,7 +818,8 @@ function vPriv(){return `<div class="wrap" style="max-width:760px"><nav class="c
   <p><b>Por quanto tempo:</b> enquanto houver atendimento ativo ou até você pedir a exclusão.</p>
   <p><b>Seus direitos:</b> pedir acesso, correção ou exclusão dos seus dados a qualquer momento, pelo WhatsApp acima.</p>
   <p><b>Neste aparelho:</b> o site guarda, só no seu navegador, os imóveis que você viu e favoritou, para mostrar sugestões. Você pode apagar limpando os dados do navegador.</p></div></div>`}
-function vConsorcio(){return `<div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Consórcio</span></nav>${vConsBox()}</div>`}
+function vConsorcio(){return `<div class="invest pg"><div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Cartas de crédito e Investimentos</span></nav>${vConsBox()}</div></div>`}
+function vInvest(){return `<section class="invest" aria-label="Setor de investimentos"><div class="wrap"><div class="invhead"><img src="logos/consorcios-investimentos.jpg" alt="" width="264" height="207" loading="lazy"><div><p class="eyebrow">Setor de investimentos</p><h2>Cartas de crédito e Investimentos</h2><p>Consórcio para imóvel, carro ou empresa, cartas contempladas e planejamento patrimonial com segurança e confiança.</p></div></div>${vConsBox()}</div></section>`}
 
 /* ======== RENDER / ROTAS ======== */
 function render(){
