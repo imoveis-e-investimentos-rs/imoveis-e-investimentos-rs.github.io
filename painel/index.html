@@ -13,7 +13,9 @@
 :root{--brand:#4E71CF;--brand-d:#3A57A8;--sky:#96B9F8;--ice:#BCE0FC;--gray:#737373;--navy:#252C3A;--bg:#F3F5F8;--surface:#fff;--s2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675;--ok:#1E8E5A;--bad:#C2410C;
   --fd:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--fb:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:14.5px/1.5 var(--fb)}
+body{margin:0;background:var(--bg);color:var(--fg);font:14.5px/1.5 var(--fb);min-height:100vh}
+body::before{content:"";position:fixed;left:0;right:0;bottom:0;height:46vh;background:url("../logos/fundo-imobiliario.svg") center bottom/auto 100% repeat-x;opacity:.42;pointer-events:none;z-index:0;-webkit-mask-image:linear-gradient(180deg,transparent,#000 65%);mask-image:linear-gradient(180deg,transparent,#000 65%)}
+.top,.wrap,.toast{position:relative;z-index:1}.top{position:sticky}.toast{position:fixed}
 h1,h2,h3{font-family:var(--fd);margin:0;line-height:1.05;text-transform:uppercase;letter-spacing:.3px}
 button,input,select,textarea{font:inherit;color:inherit}
 .top{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 2px 12px rgba(37,44,58,.06)}

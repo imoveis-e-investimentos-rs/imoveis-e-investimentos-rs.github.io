@@ -161,3 +161,9 @@ footer a{display:block;color:#C9D3EA;text-decoration:none;padding:3px 0;font-siz
 .hero .btn.or{background:#fff;color:#3A57A8}
 .btn{box-shadow:0 3px 8px -4px rgba(37,60,130,.3);transition:transform .15s}.btn:hover{transform:translateY(-2px)}
 .mcard,.faq details,.panel{box-shadow:0 14px 30px -16px rgba(37,60,130,.35)}
+/* área imobiliária: casas, apartamentos e terrenos em azul celeste no topo das cidades */
+.hero{position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70%;background:url("logos/fundo-imobiliario.svg") center bottom/auto 100% repeat-x;opacity:.35;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 70%);mask-image:linear-gradient(180deg,transparent,#000 70%)}
+.hero .wrap{position:relative;z-index:1}
+.top .brand b{white-space:nowrap;overflow:visible;text-overflow:clip}
+@media (max-width:520px){.top .brand b{font-size:15px;letter-spacing:.2px}.top .brand span{font-size:10px}}

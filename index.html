@@ -561,6 +561,14 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 .invest::before{background:url("logos/fundo-investimentos.svg") center/cover no-repeat,repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 2px,transparent 2px 26px);opacity:1;mask-image:linear-gradient(90deg,rgba(0,0,0,.55),#000 60%);-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.55),#000 60%)}
 /* gráfico do fundo em tom suave, esmaecendo */
 .invest::before{opacity:.42;filter:blur(.4px) saturate(.85);mask-image:radial-gradient(120% 140% at 100% 100%,#000 0%,rgba(0,0,0,.55) 35%,rgba(0,0,0,.12) 65%,transparent 85%);-webkit-mask-image:radial-gradient(120% 140% at 100% 100%,#000 0%,rgba(0,0,0,.55) 35%,rgba(0,0,0,.12) 65%,transparent 85%)}
+/* ÁREA IMOBILIÁRIA: casas, apartamentos e terrenos esmaecidos em azul celeste */
+.hero.pmh::before{content:"";display:block!important;position:absolute;left:0;right:0;bottom:0;height:62%;background:url("logos/fundo-imobiliario.svg") center bottom/auto 100% repeat-x;opacity:.5;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.6) 45%,#000 100%);mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.6) 45%,#000 100%);z-index:0}
+.hero.pmh[style]::before{opacity:.32;mix-blend-mode:screen}
+.imobbg{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg) 0%,#EEF5FF 100%)}
+.imobbg::before{content:"";position:absolute;left:0;right:0;bottom:0;height:300px;background:url("logos/fundo-imobiliario.svg") center bottom/auto 100% repeat-x;opacity:.38;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 70%);mask-image:linear-gradient(180deg,transparent,#000 70%)}
+.imobbg .wrap{position:relative;z-index:1}
+.imobbg{padding-bottom:110px}
+@media (max-width:640px){.hero.pmh::before{height:42%}.imobbg::before{height:200px}}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -703,7 +711,7 @@ function vInicio(){
     ${buscaBox()}
     <div class="hlinks"><a data-go="descubra">Quanto posso financiar</a><a data-go="consorcio">Cartas de crédito</a><a data-lead="vender">Quero vender meu imóvel</a></div>
   </div></section>
-  <section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Disponíveis agora</p><h2>Imóveis à venda e para alugar</h2></div>${IM.length?`<button class="btn sm" data-go="busca" data-tr="venda">Ver todos</button>`:''}</div>
+  <section class="blk imobbg"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Disponíveis agora</p><h2>Imóveis à venda e para alugar</h2></div>${IM.length?`<button class="btn sm" data-go="busca" data-tr="venda">Ver todos</button>`:''}</div>
     ${IM.length?rail(IM.slice(0,12)):`<div class="agv"><div><h3>Carteira exclusiva em atualização</h3><p>Estou selecionando os imóveis que agencio pessoalmente. Enquanto isso, me diga o que você procura e eu busco para você, ou traga o seu imóvel para o agenciamento em parceria.</p></div><div class="row"><button class="btn or" type="button" data-lead="encomenda">Procuro um imóvel</button><button class="btn" type="button" data-lead="vender">Quero vender ou alugar o meu</button></div></div>`}</div></section>
   ${iscaBanner()}
   ${vs.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Para você</p><h2>Vistos recentemente</h2></div></div>${rail(vs)}</div></section>`:''}
