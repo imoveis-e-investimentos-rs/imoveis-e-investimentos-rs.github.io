@@ -599,6 +599,25 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 .nomep{display:flex;align-items:center;gap:12px}
 .nomep img{width:58px;height:auto;flex:none}
 @media (max-width:760px){.nomep{justify-content:center;flex-wrap:wrap}}
+
+/* ===== APRESENTAÇÃO DO CORRETOR fora do círculo (estilo da referência) ===== */
+.sobreband{position:relative;overflow:hidden;color:#fff;margin-block:40px 10px;background:linear-gradient(100deg,rgba(46,74,160,.94) 0%,rgba(78,113,207,.86) 45%,rgba(110,143,224,.55) 75%,rgba(188,224,252,.35) 100%),var(--img) center/cover no-repeat;box-shadow:inset 0 20px 40px -30px rgba(0,0,0,.5)}
+.sobreband .wrap{position:relative}
+.sobre.sobre2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:30px;align-items:end;background:none;border:0;box-shadow:none!important;border-radius:0;padding:48px 0 0;overflow:visible}
+.sobre.sobre2::after{display:none}
+.sobre2 .stx{padding-bottom:48px;align-self:center}
+.sobre2 .eyebrow{color:#BCE0FC}
+.sobre2 h2{color:#fff;text-shadow:0 3px 12px rgba(10,25,70,.4)}
+.sobre2 .nomep img{background:#fff;border-radius:10px;padding:4px;box-shadow:0 8px 18px -8px rgba(0,0,0,.45)}
+.sobre2 p{color:#E6EEFD}
+.sobre2 li{color:#fff}
+.sobre2 li::before{background:#BCE0FC}
+.sobre2 .btn:not(.or){background:rgba(255,255,255,.95);color:#1B2333}
+.sobre2 .lgsig{background:#fff;padding:6px;border-radius:10px}
+.avr{align-self:end;justify-self:center;width:min(430px,100%)}
+.avr img{display:block;width:100%;height:auto;filter:drop-shadow(0 20px 30px rgba(10,25,70,.45))}
+@media (max-width:760px){.sobre.sobre2{grid-template-columns:1fr;text-align:center;padding-top:30px}.sobre2 .stx{padding-bottom:6px}.avr{width:78%}.sobre2 ul{text-align:left}.sobre2 .row{justify-content:center}}
+@media (max-width:760px){.sobre2 .lgsig{display:none}}
 </style>
 <meta property="og:title" content="PRO IMOB · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -748,7 +767,7 @@ function vInicio(){
   ${parecidos.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Baseado no que você viu</p><h2>Parecidos em ${esc(base.cid)}</h2></div></div>${rail(parecidos)}</div></section>`:''}
   <section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Onde atendo</p><h2>Vale dos Sinos e Grande Porto Alegre</h2></div><a class="btn sm" href="./guias/">Guias das cidades</a></div>
     <div class="chips">${CFG.cidades.map(c=>`<a class="chip" href="./cidades/${c.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,'-')}/">${esc(c)}</a>`).join('')}</div></div></section>
-  <section class="blk"><div class="wrap"><div class="sobre"><div class="av"><img src="anderson-retrato.jpg" alt="Anderson Alves" loading="lazy" width="1086" height="1448"></div><div><p class="eyebrow">Seu corretor</p><h2 class="nomep"><img src="logos/geral-simbolo.png" alt="" width="320" height="254" loading="lazy">Anderson Alves, Corretor Especialista</h2><p>Corretor da Innovar Imobiliária, com sede em São Leopoldo. Atendo quem quer comprar, vender ou alugar no Vale dos Sinos e na Grande Porto Alegre, com análise de crédito, simulação de financiamento e acompanhamento até a entrega das chaves.</p><ul><li>Simulação com FGTS, Minha Casa Minha Vida e financiamento</li><li>Agenciamento em parceria para proprietários</li><li>Documentação acompanhada até a escritura</li><li>Atendimento direto pelo WhatsApp</li></ul><div class="row"><a class="btn or" href="#" data-wa="geral">Conversar no WhatsApp</a><button class="btn" type="button" data-lead="avaliar">Anunciar meu imóvel</button><img class="lgsig" src="logos/geral-completa.png" alt="Corretor Especialista Anderson Alves" width="600" height="600" loading="lazy"></div></div></div></div></section>
+  <section class="sobreband rimg" style="--c:url('img/predio-cel.webp');--t:url('img/predio-tab.webp');--n:url('img/predio-note.webp')"><div class="wrap"><div class="sobre sobre2"><div class="stx"><p class="eyebrow">Seu corretor</p><h2 class="nomep"><img src="logos/geral-simbolo.png" alt="" width="320" height="254" loading="lazy">Anderson Alves, Corretor Especialista</h2><p>Corretor da Innovar Imobiliária, com sede em São Leopoldo. Atendo quem quer comprar, vender ou alugar no Vale dos Sinos e na Grande Porto Alegre, com análise de crédito, simulação de financiamento e acompanhamento até a entrega das chaves.</p><ul><li>Simulação com FGTS, Minha Casa Minha Vida e financiamento</li><li>Agenciamento em parceria para proprietários</li><li>Documentação acompanhada até a escritura</li><li>Atendimento direto pelo WhatsApp</li></ul><div class="row"><a class="btn or" href="#" data-wa="geral">Conversar no WhatsApp</a><button class="btn" type="button" data-lead="avaliar">Anunciar meu imóvel</button><img class="lgsig" src="logos/geral-completa.png" alt="Corretor Especialista Anderson Alves" width="600" height="600" loading="lazy"></div></div><div class="avr"><img src="img/anderson-recorte-note.webp" srcset="img/anderson-recorte-cel.webp 480w, img/anderson-recorte-tab.webp 720w, img/anderson-recorte-note.webp 983w" sizes="(max-width:760px) 78vw, 420px" alt="Anderson Alves, Corretor Especialista" width="983" height="1321" loading="lazy"></div></div></div></section>
   <section class="blk"><div class="wrap">${vSimBox()}</div></section>
   ${vInvest()}
 `;
