@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Playfair+Display:wght@600;700&display=swap");
 /* Microsites · mesma base visual do portal (troque este arquivo para aplicar o modelo de referência) */
 :root{--navy:#252C3A;--royal:#3A57A8;--orange:#4E71CF;--bg:#F4F6FB;--surface:#fff;--surface-2:#EBEFF8;--line:#D5DCEB;--fg:#0D1B33;--muted:#5A6782;
 --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--f-body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;--r:14px;--shadow:0 6px 24px rgba(0,16,42,.08)}
@@ -140,15 +140,17 @@ footer a{display:block;color:#C9D3EA;text-decoration:none;padding:3px 0;font-siz
 :root{--navy:#3A57A8;--royal:#3A57A8;--orange:#4E71CF}
 .top{background:#fff;color:#1B2333;border-bottom:1px solid #D9E0EC}
 .top .brand,.top .brand b{color:#1B2333}
-.top .brand b{font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;letter-spacing:.5px}
+.top .brand b{font-family:"Cinzel",Georgia,serif;font-size:22px;letter-spacing:.5px}
 .top .brand span{color:#5D6675;border-top:2px solid #4E71CF;padding-top:3px;display:block}
 .top .mk path{stroke:#4E71CF}
 .top .menu-btn{color:#1B2333;border-color:#D9E0EC}
 .hero{background:linear-gradient(160deg,#4E71CF 0%,#6E8FE0 45%,#96B9F8 100%)}
-.hero h1,h2{font-family:"Cormorant Garamond",Georgia,serif;text-transform:none}
+.hero h1,h2{font-family:"Playfair Display",Georgia,serif;text-transform:none}
 .hero .eye{color:#fff}.eye{color:#4E71CF}
 .hero .btn.or{background:#fff;color:#1B2333;border-color:#fff}
 .btn.or{background:#4E71CF;border-color:#4E71CF;color:#fff}
 .btn{border-radius:4px}
 :root{--bg:#F5F8FD;--surface-2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675}
 .top .brand span{white-space:normal}
+.top .brand b{font-weight:600}
+.hero h1,h2{font-weight:600}

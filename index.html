@@ -8,7 +8,7 @@
 <meta name="description" content="Casas, apartamentos, terrenos e lançamentos em São Leopoldo, Sapucaia do Sul, Canoas, Novo Hamburgo e região metropolitana de Porto Alegre. Atendimento de Anderson Alves, corretor da Innovar Imobiliária.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:wght@500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap">
 <style>
 /* Layout: portal de busca — barra fixa, busca no topo, vitrines horizontais, grade de resultados e ficha do imóvel em rota própria */
 :root{
@@ -378,7 +378,7 @@ a.chip{text-decoration:none}
 
 /* ===== VISUAL 4 (18/11/2026): PROIMOB INVESTIMENTOS · versão do cliente (preto, dourado e branco) ===== */
 :root,:root[data-theme="dark"]{color-scheme:light;--orange:#4E71CF;--orange-ink:#fff;--royal:#4E71CF;--navy:#1B2333;--brand:#4E71CF;--brand-d:#3A57A8;--sky:#96B9F8;--ice:#BCE0FC;--gold:#4E71CF;
-  --bg:#F5F8FD;--surface:#fff;--surface-2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675;--f-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
+  --bg:#F5F8FD;--surface:#fff;--surface-2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675;--f-serif:"Playfair Display",Georgia,"Times New Roman",serif;--f-caps:"Cinzel","Trajan Pro",Georgia,serif}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F5F8FD;--surface:#fff;--surface-2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675;--royal:#4E71CF;--orange:#4E71CF}}
 h1,h2{font-family:var(--f-serif);text-transform:none;font-weight:600;letter-spacing:.2px}
 .blk-head h2,.sobre h2{font-size:clamp(28px,3.4vw,40px)}
@@ -452,6 +452,18 @@ h1,h2,h3,.eyebrow,.price{font-variant-numeric:lining-nums}
 .pmnav a b{color:#4E71CF}.pmnav a:hover b{color:#3A57A8}
 .hlinks a{color:#2C4590;text-shadow:none;font-weight:500}.hlinks a:hover{color:#1B2F6B}
 @media (max-width:380px){.brand.pm .bt>b{font-size:15px}}
+/* letras da foto de referência: Cinzel no nome e no menu, Playfair Display nos títulos */
+h1,h2,.hero.pmh h1,.agv h3,footer h3{font-family:var(--f-serif);font-weight:600;letter-spacing:.2px;text-transform:none}
+.hero.pmh h1{font-weight:600;letter-spacing:.3px}
+.brand.pm .bt>b{font-family:var(--f-caps);font-weight:600;letter-spacing:1.2px}
+.pmnav a b{font-family:var(--f-caps);font-weight:600;letter-spacing:1px;font-size:17px}
+.eyebrow{font-family:var(--f-caps);font-weight:600;letter-spacing:2px}
+.tbar{font-family:var(--f-body)}
+.brand.pm{flex:none;overflow:visible}
+.brand.pm .bt>b{font-size:23px;letter-spacing:.8px}
+@media (max-width:1180px){.brand.pm .bt>b{font-size:20px}}
+@media (max-width:520px){.brand.pm{flex:1 1 auto;min-width:0}.brand.pm .bt>b{font-size:14px;letter-spacing:.2px}.brand.pm .bt>span{font-size:9.4px}}
+@media (max-width:370px){.brand.pm .bt>b{font-size:12.5px}}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
