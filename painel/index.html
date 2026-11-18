@@ -142,7 +142,7 @@ async function gravarCofre(msg){
   const body={message:msg,content:b64(JSON.stringify({v:1,alg:'PBKDF2-SHA256/AES-GCM-256',it:IT,s:u8b64(SALT),iv:u8b64(iv),d:u8b64(ct)})),branch:BR};if(PSHA)body.sha=PSHA;
   const r=await gh(PRIVARQ,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});PSHA=r.content.sha;
 }
-const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código na Innovar / Jetimob'],['lead','Lead de origem (PRO IMOBILIÁRIA)'],['obs','Observações internas']];
+const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código em outro sistema'],['lead','Lead de origem (PRO IMOBILIÁRIA)'],['obs','Observações internas']];
 function toast(m,t){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(()=>e.hidden=true,t||3500)}
 const b64=s=>{const b=new TextEncoder().encode(s);let r='';for(let i=0;i<b.length;i+=0x8000)r+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(r)};
 const unb64=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
@@ -196,14 +196,13 @@ function telaLista(){
   const L=DB.imoveis,cont=s=>L.filter(i=>(i.st||'ativo')===s).length;
   const vis=L.filter(i=>FILTRO==='todos'?(i.st||'ativo')!=='arquivado':(i.st||'ativo')===FILTRO).sort((a,b)=>(b.dt||0)-(a.dt||0));
   $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px"><div><p class="muted small" style="margin:0">Carteira própria</p><h1 style="font-size:38px">Meus imóveis</h1></div>
-   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="bImp">Importar da Innovar pelo código</button><button class="btn pri" id="bNovo">+ Cadastrar imóvel</button></div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" id="bNovo">+ Cadastrar imóvel</button></div></div>
    <div class="kpis"><div><b>${cont('ativo')}</b><span>no ar</span></div><div><b>${cont('reservado')}</b><span>reservados</span></div><div><b>${cont('vendido')+cont('alugado')}</b><span>vendidos / alugados</span></div><div><b>${cont('pausado')}</b><span>pausados</span></div></div>
    <div class="tabs">${[['todos','Todos'],['ativo','No ar'],['reservado','Reservados'],['pausado','Pausados'],['vendido','Vendidos'],['alugado','Alugados'],['arquivado','Lixeira']].map(([k,l])=>`<button data-f="${k}" aria-pressed="${FILTRO===k}">${l}</button>`).join('')}</div>
    <div class="list">${vis.length?vis.map(i=>{const f=(i.img||[])[0];return `<div class="row">${f?`<img src="${esc(fotoSrc(f))}" alt="">`:'<div class="noimg">sem foto</div>'}
      <div><h4><span class="st ${esc(i.st||'ativo')}">${STL[i.st||'ativo']}</span>${esc(i.ti||i.t)}</h4><div class="small muted">Cód. ${esc(i.c)} · ${esc(i.b||'')}${i.b?', ':''}${esc(i.cid||'')} · ${[i.v?brl(i.v):'',i.a?brl(i.a)+'/mês':''].filter(Boolean).join(' · ')||'sem valor'}${i.img&&i.img.length?' · '+i.img.length+' fotos':''}</div></div>
-     <div class="acts"><button class="btn sm" data-fi="${esc(i.c)}">Ficha</button><button class="btn sm" data-ed="${esc(i.c)}">Editar</button><a class="btn sm" href="../#imovel-${esc(i.c)}" target="_blank" rel="noopener">Ver</a>${(i.st||'ativo')==='arquivado'?`<button class="btn sm" data-rest="${esc(i.c)}">Restaurar</button><button class="btn sm bad" data-del="${esc(i.c)}">Excluir de vez</button>`:`<button class="btn sm bad" data-arq="${esc(i.c)}">Lixeira</button>`}</div></div>`}).join(''):`<div class="card muted" style="text-align:center">${FILTRO==='todos'?'Nenhum imóvel cadastrado ainda. Toque em <b>+ Cadastrar imóvel</b> ou importe um agenciamento seu da Innovar pelo código.':'Nada aqui.'}</div>`}</div>`;
+     <div class="acts"><button class="btn sm" data-fi="${esc(i.c)}">Ficha</button><button class="btn sm" data-ed="${esc(i.c)}">Editar</button><a class="btn sm" href="../#imovel-${esc(i.c)}" target="_blank" rel="noopener">Ver</a>${(i.st||'ativo')==='arquivado'?`<button class="btn sm" data-rest="${esc(i.c)}">Restaurar</button><button class="btn sm bad" data-del="${esc(i.c)}">Excluir de vez</button>`:`<button class="btn sm bad" data-arq="${esc(i.c)}">Lixeira</button>`}</div></div>`}).join(''):`<div class="card muted" style="text-align:center">${FILTRO==='todos'?'Nenhum imóvel cadastrado ainda. Toque em <b>+ Cadastrar imóvel</b>.':'Nada aqui.'}</div>`}</div>`;
   $('#bNovo').onclick=()=>telaForm(null);
-  $('#bImp').onclick=importar;
   $$('[data-f]').forEach(b=>b.onclick=()=>{FILTRO=b.dataset.f;telaLista()});
   $$('[data-fi]').forEach(b=>b.onclick=()=>ficha(DB.imoveis.find(i=>i.c===b.dataset.fi)));
   $$('[data-ed]').forEach(b=>b.onclick=()=>telaForm(DB.imoveis.find(i=>i.c===b.dataset.ed)));
@@ -213,7 +212,7 @@ function telaLista(){
 }
 function ficha(i){
   const p=(PRIV||{})[i.c]||{};const L=(a,b)=>b?`<tr><th>${a}</th><td>${esc(b)}</td></tr>`:'';
-  const txt=[`*${i.ti}*`,`Cód. ${i.c} · ${i.t}`,`${i.b?i.b+', ':''}${i.cid}`,i.v?'Venda: '+brl(i.v):'',i.a?'Aluguel: '+brl(i.a)+'/mês':'',i.cond?'Condomínio: '+brl(i.cond):'',[i.m2&&i.m2+' m²',i.q&&i.q+' quartos',i.s&&i.s+' suíte(s)',i.bh&&i.bh+' banheiro(s)',i.g&&i.g+' vaga(s)'].filter(Boolean).join(' · '),(i.carac||[]).join(', '),'',i.desc||'','','Anderson Alves — Estrategista Patrimonial INNOVAR','WhatsApp (51) 98416-8848'].filter((x,k,a)=>x!==''||a[k-1]!=='').join('\n');
+  const txt=[`*${i.ti}*`,`Cód. ${i.c} · ${i.t}`,`${i.b?i.b+', ':''}${i.cid}`,i.v?'Venda: '+brl(i.v):'',i.a?'Aluguel: '+brl(i.a)+'/mês':'',i.cond?'Condomínio: '+brl(i.cond):'',[i.m2&&i.m2+' m²',i.q&&i.q+' quartos',i.s&&i.s+' suíte(s)',i.bh&&i.bh+' banheiro(s)',i.g&&i.g+' vaga(s)'].filter(Boolean).join(' · '),(i.carac||[]).join(', '),'',i.desc||'','','Anderson Alves — Estrategista Patrimonial','WhatsApp (51) 98416-8848'].filter((x,k,a)=>x!==''||a[k-1]!=='').join('\n');
   $('#app').innerHTML=`<p class="muted small" style="margin:0 0 6px"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p>
   <div class="card g"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end"><div><p class="muted small" style="margin:0">Ficha de prospecção · uso interno</p><h1 style="font-size:32px">${esc(i.ti)}</h1></div><div style="display:flex;gap:8px"><button class="btn" id="bCop">Copiar texto para o cliente</button><button class="btn" onclick="print()">Imprimir</button></div></div>
   ${(i.img||[]).length?`<div class="fotos">${i.img.slice(0,8).map(x=>`<div class="ft"><img src="${esc(fotoSrc(x))}" alt=""></div>`).join('')}</div>`:''}
@@ -225,21 +224,13 @@ function ficha(i){
   $('#bCop').onclick=async()=>{try{await navigator.clipboard.writeText(txt);toast('Texto copiado, sem dados privados.')}catch(e){prompt('Copie o texto:',txt)}};
 }
 async function mudarSt(c,st,msg){const i=DB.imoveis.find(x=>x.c===c);const ant=i.st;i.st=st;try{await gravar('Status '+c+': '+st);toast(msg);telaLista()}catch(e){i.st=ant;toast(e.message,6000)}}
-async function importar(){
-  const c=(prompt('Código do imóvel na Innovar (o número que aparece no anúncio):')||'').replace(/\D/g,'');if(!c)return;
-  if(DB.imoveis.some(i=>i.c===c))return toast('Esse código já está no seu painel.');
-  try{if(!CAT)CAT=await (await fetch('../catalogo.json?t='+Date.now())).json()}catch(e){return toast('Não consegui abrir a lista da Innovar agora.')}
-  const x=(CAT.imoveis||[]).find(i=>String(i.c)===c);
-  if(!x)return toast('Código '+c+' não encontrado na última lista da Innovar ('+(CAT.gerado||'')+'). Cadastre manualmente.',6000);
-  telaForm({c:x.c,fin:x.v&&x.a?'ambos':x.v?'venda':'aluguel',t:x.t,ti:x.ti,cid:x.cid,b:x.b,v:x.v,a:x.a,at:x.at,m2:x.m2,q:x.q,s:x.s,bh:x.bh,g:x.g,mob:x.mob,img:x.img||[],desc:x.d?x.d+'.':'',carac:[],st:'ativo',origem:'innovar'},true);
-}
 function telaForm(i,novo){
   const n=!i||novo;i=JSON.parse(JSON.stringify(i||Object.assign({c:proxCod(),fin:'venda',st:'pausado',img:[],carac:[]},PRE?PRE.pub:{})));i.carac=i.carac||[];i.img=i.img||[];
-  ED={orig:n?null:i.c,i,novas:[]};const pv=Object.assign({},(PRIV||{})[i.c]||{},n&&PRE?PRE.priv:{});if(i.origem==='innovar'&&!pv.cod_ext)pv.cod_ext=i.c;
+  ED={orig:n?null:i.c,i,novas:[]};const pv=Object.assign({},(PRIV||{})[i.c]||{},n&&PRE?PRE.priv:{});
   const sel=(id,ops,v)=>`<select id="${id}">${ops.map(o=>{const[k,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(k)}" ${String(v??'')===String(k)?'selected':''}>${esc(l)}</option>`}).join('')}</select>`;
   const nn=(id,lab,v,ph)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(v??'')}" placeholder="${ph||''}"></label>`;
   const rs=(id,lab,v)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(mil(v))}" placeholder="R$"></label>`;
-  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><p class="muted small" style="margin:0"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p><h1 style="font-size:36px">${n?'Cadastrar imóvel':'Editar imóvel'}</h1></div>${i.origem==='innovar'?'<span class="hint">Dados importados da Innovar. Confira e complete antes de salvar.</span>':PRE&&n?'<span class="hint">Agenciamento vindo do <b>PRO IMOBILIÁRIA</b>. Começa como pausado: coloque no ar quando estiver pronto.</span>':''}</div>
+  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><p class="muted small" style="margin:0"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p><h1 style="font-size:36px">${n?'Cadastrar imóvel':'Editar imóvel'}</h1></div>${PRE&&n?'<span class="hint">Agenciamento vindo do <b>PRO IMOBILIÁRIA</b>. Começa como pausado: coloque no ar quando estiver pronto.</span>':''}</div>
   <form class="card" id="fm" autocomplete="off">
    <div class="sec"><h3><i>1</i>Dados principais</h3>
     <div class="g g4"><label>Código<input id="c" value="${esc(i.c)}" required></label><label>Finalidade${sel('fin',[['venda','Venda'],['aluguel','Aluguel'],['ambos','Venda e aluguel']],i.fin)}</label><label>Tipo${sel('t',TIPOS.includes(i.t)||!i.t?TIPOS:[i.t,...TIPOS],i.t||'Apartamento')}</label><label>Situação no site${sel('st',[['ativo','No ar'],['reservado','Reservado'],['pausado','Pausado (fora do site)'],['vendido','Vendido'],['alugado','Alugado']],i.st||'ativo')}</label></div>
