@@ -516,6 +516,11 @@ h1,h2,.hero.pmh h1,.agv h3,footer h3{font-family:var(--f-serif);font-weight:600;
 footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 @media (prefers-reduced-motion:reduce){.card,.card:hover,.btn,.brand.pm .mono.lgm{transition:none;transform:none!important}.hero.pmh .search{transform:none}}
 @media (max-width:860px){.hero.pmh .search{transform:none}.gocol{grid-column:1/-1}.golinks{justify-content:center;gap:24px}}
+/* símbolo da logo sem fundo, sobre o branco da barra */
+.brand.pm .mono.lgm{background:transparent!important;border:0;box-shadow:none!important;border-radius:0;width:62px;height:50px;overflow:visible;transform:none}
+.brand.pm .mono.lgm img{position:static;width:100%;height:100%;object-fit:contain;left:auto;top:auto;filter:drop-shadow(0 1px 0 rgba(255,255,255,.8)) drop-shadow(0 4px 6px rgba(37,60,130,.35)) drop-shadow(0 1px 1px rgba(37,60,130,.25))}
+.brand.pm:hover .mono.lgm{transform:translateY(-2px)}
+@media (max-width:520px){.brand.pm .mono.lgm{width:48px;height:40px}.brand.pm .mono.lgm img{width:100%;left:auto;top:auto}}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -532,7 +537,7 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 
 <div class="instbar" id="instBar" role="region" aria-label="Instalar app"><span>📲 Tenha o app PROIMOB no seu celular</span><button type="button" class="ib-go" data-instalar="1">Instalar</button><button type="button" class="ib-x" id="instX" aria-label="Fechar">×</button></div>
 <header class="top"><div class="tbar"><div class="tin"><span>WhatsApp (51) 98416-8848 · CRECI-RS 057.384</span><nav aria-label="Atalhos"><a data-go="inicio">Início</a><a href="./guias/">Guias das cidades</a><a data-go="descubra">Quanto posso financiar</a><a href="#" data-wa="geral">Contato</a></nav></div></div><div class="wrap">
-  <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono lgm" aria-hidden="true"><img src="logo-anderson.png" alt=""></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
+  <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono lgm" aria-hidden="true"><img src="logo-simbolo.png" alt="" width="240" height="192"></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
   <div class="pmright"><nav class="nav pmnav" aria-label="Principal">
     <a href="#comprar" data-go="busca" data-tr="venda"><b>Comprar</b><small>Encontre seu imóvel</small></a>
     <a href="#" data-lead="vender"><b>Vender</b><small>Agenciar meu imóvel</small></a>
