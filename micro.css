@@ -1,5 +1,5 @@
 /* Microsites · mesma base visual do portal (troque este arquivo para aplicar o modelo de referência) */
-:root{--navy:#00102A;--royal:#1C3087;--orange:#E98018;--bg:#F4F6FB;--surface:#fff;--surface-2:#EBEFF8;--line:#D5DCEB;--fg:#0D1B33;--muted:#5A6782;
+:root{--navy:#252C3A;--royal:#3A57A8;--orange:#4E71CF;--bg:#F4F6FB;--surface:#fff;--surface-2:#EBEFF8;--line:#D5DCEB;--fg:#0D1B33;--muted:#5A6782;
 --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--f-body:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;--r:14px;--shadow:0 6px 24px rgba(0,16,42,.08)}
 @media (prefers-color-scheme:dark){:root{--bg:#070E1C;--surface:#0E1A30;--surface-2:#15233F;--line:#24365A;--fg:#E8EEFA;--muted:#9AA8C4;--royal:#7B93FF;--shadow:0 6px 24px rgba(0,0,0,.35);color-scheme:dark}}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -127,3 +127,10 @@ footer a{display:block;color:#C9D3EA;text-decoration:none;padding:3px 0;font-siz
 /* TELAS GRANDES */
 @media (min-width:1600px){.wrap{max-width:1320px}body{font-size:16px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Visual 3 (18/11/2026): cores da logo Anderson Alves */
+.hero{background:linear-gradient(115deg,#3A57A8 0%,#4E71CF 60%,#6E8FE0 100%)}
+.hero .lead{color:#E6EEFD}
+.hero .eye,.eye{color:#4E71CF}.hero .eye{color:#BCE0FC}
+.top .mk path[stroke="#E98018"]{stroke:#96B9F8}
+.hero .btn.or{background:#fff;color:#3A57A8;border-color:#fff}.hero .herobtn{margin-top:18px}

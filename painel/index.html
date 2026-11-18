@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel de imóveis · Anderson Alves</title>
+<meta name="theme-color" content="#3A57A8">
+<link rel="icon" href="../icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap">
+<style>
+:root{--brand:#4E71CF;--brand-d:#3A57A8;--sky:#96B9F8;--ice:#BCE0FC;--gray:#737373;--navy:#252C3A;--bg:#F3F5F8;--surface:#fff;--s2:#EAF0FB;--line:#D9E0EC;--fg:#1B2333;--muted:#5D6675;--ok:#1E8E5A;--bad:#C2410C;
+  --fd:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--fb:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14.5px/1.5 var(--fb)}
+h1,h2,h3{font-family:var(--fd);margin:0;line-height:1.05;text-transform:uppercase;letter-spacing:.3px}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 2px 12px rgba(37,44,58,.06)}
+.top .in{max-width:1180px;margin:auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+.lg{width:56px;height:46px;border-radius:10px;overflow:hidden;background:#767676;position:relative;flex:none}
+.lg img{position:absolute;width:68px;max-width:none;left:-5px;top:-2px}
+.top b{font-family:var(--fd);font-size:21px;text-transform:uppercase;display:block;line-height:1}
+.top small{color:var(--muted);font-size:12px}
+.top .sp{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.wrap{max-width:1180px;margin:auto;padding:22px 18px 80px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:9px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600;text-decoration:none;color:var(--fg)}
+.btn:hover{border-color:var(--brand)}
+.btn.pri{background:var(--brand);border-color:var(--brand);color:#fff}.btn.pri:hover{background:var(--brand-d)}
+.btn.sm{min-height:34px;padding:5px 11px;font-size:13px;border-radius:10px}
+.btn.bad{color:var(--bad)}
+.btn:disabled{opacity:.55;cursor:wait}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 4px 18px rgba(37,44,58,.05)}
+.muted{color:var(--muted)}.small{font-size:12.5px}
+label{display:grid;gap:5px;font-weight:500;font-size:13px}
+input,select,textarea{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+textarea{min-height:150px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--sky);border-color:var(--brand)}
+.g{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:760px){.g2,.g3{grid-template-columns:1fr}.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sec{display:grid;gap:14px;padding:20px 0;border-top:1px solid var(--line)}
+.sec:first-of-type{border-top:0;padding-top:4px}
+.sec h3{font-size:20px;color:var(--brand-d);display:flex;align-items:center;gap:10px}
+.sec h3 i{font-style:normal;width:26px;height:26px;border-radius:8px;background:var(--s2);display:grid;place-items:center;font-size:14px;font-family:var(--fb)}
+.chk{display:flex;flex-wrap:wrap;gap:8px}
+.chk label{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;font-weight:500;background:#fff}
+.chk input{width:auto;min-height:0;margin:0}
+.chk label:has(input:checked){border-color:var(--brand);background:var(--s2);color:var(--brand-d)}
+.fotos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.ft{position:relative;border-radius:12px;overflow:hidden;background:var(--s2);aspect-ratio:4/3;border:2px solid transparent}
+.ft:first-child{border-color:var(--brand)}
+.ft img{width:100%;height:100%;object-fit:cover;display:block}
+.ft .cap{position:absolute;left:6px;top:6px;background:var(--brand);color:#fff;font-size:11px;font-weight:600;border-radius:6px;padding:2px 7px}
+.ft .bar{position:absolute;inset:auto 0 0 0;display:flex;justify-content:space-between;gap:4px;padding:5px;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.ft .bar button{border:0;background:rgba(255,255,255,.92);border-radius:7px;width:30px;height:28px;cursor:pointer;font-weight:700}
+.drop{border:2px dashed var(--sky);border-radius:14px;padding:22px;text-align:center;background:var(--s2);cursor:pointer}
+.drop b{color:var(--brand-d)}
+.list{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px}
+.row img,.row .noimg{width:96px;height:72px;object-fit:cover;border-radius:10px;background:var(--s2);display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.row h4{margin:0;font-size:15px}
+.row .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:640px){.row{grid-template-columns:72px minmax(0,1fr)}.row img,.row .noimg{width:72px;height:56px}.row .acts{grid-column:1/-1;justify-content:flex-start}}
+.st{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-right:6px}
+.st.ativo{background:#E3F4EC;color:var(--ok)}.st.reservado{background:#FFF3DC;color:#9A6200}.st.vendido,.st.alugado{background:#E8EAF0;color:var(--navy)}.st.pausado,.st.arquivado{background:#F1F1F1;color:var(--gray)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 14px}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;cursor:pointer;font-weight:500}
+.tabs button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:11px 18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:50;max-width:92vw}
+.save{position:sticky;bottom:0;background:linear-gradient(transparent,var(--bg) 30%);padding:18px 0 6px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.hint{background:var(--s2);border-radius:12px;padding:12px 14px;font-size:13px}
+.hint b{color:var(--brand-d)}
+ol.passos{margin:6px 0 0;padding-left:20px;display:grid;gap:6px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.kpis div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.kpis b{font-family:var(--fd);font-size:30px;display:block;line-height:1}
+.kpis span{font-size:12px;color:var(--muted)}
+@media(max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.top .in small{display:none}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <span class="lg"><img src="../logo-anderson.png" alt=""></span>
+  <div><b>Painel de imóveis</b><small>Anderson Alves · cadastros do site</small></div>
+  <div class="sp"><a class="btn sm" href="../" target="_blank" rel="noopener">Ver o site</a><button class="btn sm" id="bSair" hidden>Sair</button></div>
+</div></header>
+<main class="wrap" id="app"></main>
+<div class="toast" id="toast" hidden></div>
+<input type="file" id="fFotos" accept="image/*" multiple hidden>
+
+<script>
+(()=>{
+const REPO='imoveis-e-investimentos-rs/imoveis-e-investimentos-rs.github.io',BR='main',ARQ='meus-imoveis.json';
+const API='https://api.github.com/repos/'+REPO+'/contents/';
+const CIDADES=['Sapucaia do Sul','São Leopoldo','Esteio','Canoas','Novo Hamburgo','Portão','Estância Velha','Cachoeirinha','Gravataí','Viamão','Guaíba','Porto Alegre','Campo Bom','Sapiranga','Nova Santa Rita','Alvorada'];
+const TIPOS=['Apartamento','Casa','Casa em condomínio','Sobrado','Cobertura','Kitnet / Studio','Terreno','Terreno em condomínio','Sala comercial','Loja','Prédio comercial','Pavilhão','Sítio / Chácara','Área rural'];
+const CARAC={'Imóvel':['Churrasqueira','Pátio','Sacada','Sacada com churrasqueira','Área de serviço','Lareira','Ar-condicionado','Piso porcelanato','Armários planejados','Cozinha americana','Escritório','Despensa','Edícula','Piscina','Box / depósito','Aquecimento a gás','Energia solar','Portão eletrônico','Cercado / murado'],
+ 'Condomínio':['Elevador','Portaria 24h','Salão de festas','Playground','Academia','Piscina do condomínio','Quiosque com churrasqueira','Quadra esportiva','Pet place','Bicicletário','Câmeras de segurança'],
+ 'Condições':['Aceita financiamento','Aceita FGTS','Minha Casa Minha Vida','Aceita permuta','Aceita carro na negociação','Documentação em dia','Escriturado','Aceita pet','Pronto para morar','Na planta / em obras'],
+ 'Proximidades':['Perto do Trensurb','Perto da BR-116','Perto de escolas','Perto de mercado','Perto de hospital / UPA','Perto de parada de ônibus','Perto da universidade']};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num=v=>Number(String(v==null?'':v).replace(/[^\d,]/g,'').replace(',','.'))||null;
+const brl=v=>v?'R$ '+Number(v).toLocaleString('pt-BR',{maximumFractionDigits:0}):'';
+const mil=v=>v?Number(v).toLocaleString('pt-BR'):'';
+const ls={get(k){try{return localStorage.getItem('painel.'+k)}catch(e){return null}},set(k,v){try{v==null?localStorage.removeItem('painel.'+k):localStorage.setItem('painel.'+k,v)}catch(e){}}};
+let TOKEN=ls.get('token'),DB={atualizado:'',imoveis:[]},SHA=null,ED=null,FILTRO='todos',CAT=null;
+const STL={ativo:'No ar',reservado:'Reservado',pausado:'Pausado',vendido:'Vendido',alugado:'Alugado',arquivado:'Na lixeira'};
+const PRIVARQ='privado.enc.json';let PRIV=null,PSHA=null,KEY=null,SALT=null;
+const u8b64=u=>{let r='';for(let i=0;i<u.length;i+=0x8000)r+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(r)};
+const b64u8=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function derivar(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:250000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+async function abrirCofre(pw){
+  const r=await gh(PRIVARQ);
+  if(!r){SALT=crypto.getRandomValues(new Uint8Array(16));KEY=await derivar(pw,SALT);PRIV={};PSHA=null;return 'novo'}
+  const o=JSON.parse(unb64(r.content));SALT=b64u8(o.s);KEY=await derivar(pw,SALT);
+  try{const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64u8(o.iv)},KEY,b64u8(o.d));PRIV=JSON.parse(new TextDecoder().decode(pt));PSHA=r.sha;return 'ok'}catch(e){KEY=null;throw new Error('Senha dos dados privados incorreta.')}
+}
+async function gravarCofre(msg){
+  const iv=crypto.getRandomValues(new Uint8Array(12));const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},KEY,new TextEncoder().encode(JSON.stringify(PRIV))));
+  const body={message:msg,content:b64(JSON.stringify({v:1,alg:'PBKDF2-SHA256-250k/AES-GCM',s:u8b64(SALT),iv:u8b64(iv),d:u8b64(ct)})),branch:BR};if(PSHA)body.sha=PSHA;
+  const r=await gh(PRIVARQ,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});PSHA=r.content.sha;
+}
+const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código na Innovar / Jetimob'],['obs','Observações internas']];
+function toast(m,t){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(()=>e.hidden=true,t||3500)}
+const b64=s=>{const b=new TextEncoder().encode(s);let r='';for(let i=0;i<b.length;i+=0x8000)r+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(r)};
+const unb64=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
+async function gh(path,opt){
+  const r=await fetch(API+path+(opt&&opt.method?'':'?ref='+BR+'&t='+Date.now()),Object.assign({headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json'}},opt||{}));
+  if(r.status===404)return null;
+  if(!r.ok){const t=await r.text();throw new Error(r.status===401?'Chave de acesso inválida ou vencida.':r.status===403?'A chave não tem permissão de escrita neste repositório.':r.status===409||r.status===422?'O arquivo mudou em outro aparelho. Recarregue o painel e salve de novo.':'GitHub '+r.status+': '+t.slice(0,140))}
+  return r.json();
+}
+async function carregar(){
+  const r=await gh(ARQ);
+  if(r){DB=JSON.parse(unb64(r.content));SHA=r.sha}else{DB={atualizado:'',imoveis:[]};SHA=null}
+  DB.imoveis=DB.imoveis||[];
+}
+async function gravar(msg){
+  DB.atualizado=new Date().toISOString();
+  const body={message:msg,content:b64(JSON.stringify(DB,null,1)),branch:BR};if(SHA)body.sha=SHA;
+  const r=await gh(ARQ,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  SHA=r.content.sha;
+}
+async function subirFoto(path,blob){
+  const buf=new Uint8Array(await blob.arrayBuffer());let s='';for(let i=0;i<buf.length;i+=0x8000)s+=String.fromCharCode.apply(null,buf.subarray(i,i+0x8000));
+  await gh(path,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({message:'Foto '+path,content:btoa(s),branch:BR})});
+}
+function reduzir(file,max,q){return new Promise((ok,er)=>{const u=URL.createObjectURL(file),im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);c.toBlob(b=>b?ok(b):er(new Error('foto')),'image/jpeg',q)};im.onerror=()=>er(new Error('Não consegui abrir a foto '+file.name));im.src=u})}
+const fotoSrc=x=>{const s=Array.isArray(x)?x[0]:x;return /^https?:|^blob:|^data:/.test(s)?s:'../'+s};
+function proxCod(){let n=0;DB.imoveis.forEach(i=>{const m=/^AA(\d+)$/.exec(i.c);if(m)n=Math.max(n,+m[1])});return 'AA'+String(n+1).padStart(3,'0')}
+
+/* ---------- TELAS ---------- */
+function telaEntrar(){
+  $('#bSair').hidden=true;
+  $('#app').innerHTML=`<div class="card g" style="max-width:640px;margin:20px auto">
+   <h2 style="font-size:30px">Entrar no painel</h2>
+   <p class="muted" style="margin:0">Aqui você cadastra, edita e tira do ar os imóveis que aparecem no seu site. Para salvar, o painel usa uma chave de acesso do GitHub que fica guardada <b>só neste aparelho</b>, nunca no site.</p>
+   <label>Chave de acesso (token do GitHub)<input id="tk" type="password" autocomplete="off" placeholder="github_pat_..."></label>
+   <label>Senha dos dados privados<input id="pw" type="password" autocomplete="off" placeholder="mínimo 8 caracteres"></label>
+   <p class="small muted" style="margin:-6px 0 0">Endereço, proprietário, chave e observações ficam criptografados com essa senha e só aparecem aqui no painel, nunca para o cliente. Na primeira vez você cria a senha. Guarde-a bem: sem ela esses dados não podem ser recuperados.</p>
+   <button class="btn pri" id="bEntrar">Entrar</button>
+   <div class="hint"><b>Primeira vez? Crie a chave em 2 minutos:</b><ol class="passos">
+    <li>No GitHub da conta <b>imoveis-e-investimentos-rs</b>, abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings › Developer settings › Fine-grained tokens › Generate new token</a>.</li>
+    <li>Nome: <b>Painel de imóveis</b>. Validade: 1 ano.</li>
+    <li>Repository access: <b>Only select repositories</b> › <b>imoveis-e-investimentos-rs.github.io</b>.</li>
+    <li>Permissions › Repository permissions › <b>Contents: Read and write</b>. Nada mais.</li>
+    <li>Gere, copie e cole aqui. Não envie essa chave para ninguém.</li></ol></div></div>`;
+  if(TOKEN){$('#tk').value=TOKEN}
+  $('#bEntrar').onclick=async()=>{const v=$('#tk').value.trim(),pw=$('#pw').value;if(!v)return toast('Cole a chave de acesso.');if(pw.length<8)return toast('A senha dos dados privados precisa ter pelo menos 8 caracteres.');TOKEN=v;const b=$('#bEntrar');b.disabled=true;b.textContent='Verificando…';
+    try{await carregar();const st=await abrirCofre(pw);if(st==='novo'&&prompt('Primeiro acesso: digite a senha de novo para confirmar')!==pw){KEY=null;throw new Error('As senhas não conferem.')}ls.set('token',v);telaLista()}catch(e){TOKEN=null;toast(e.message,6000);b.disabled=false;b.textContent='Entrar'}};
+}
+function telaLista(){
+  $('#bSair').hidden=false;ED=null;
+  const L=DB.imoveis,cont=s=>L.filter(i=>(i.st||'ativo')===s).length;
+  const vis=L.filter(i=>FILTRO==='todos'?(i.st||'ativo')!=='arquivado':(i.st||'ativo')===FILTRO).sort((a,b)=>(b.dt||0)-(a.dt||0));
+  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px"><div><p class="muted small" style="margin:0">Carteira própria</p><h1 style="font-size:38px">Meus imóveis</h1></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="bImp">Importar da Innovar pelo código</button><button class="btn pri" id="bNovo">+ Cadastrar imóvel</button></div></div>
+   <div class="kpis"><div><b>${cont('ativo')}</b><span>no ar</span></div><div><b>${cont('reservado')}</b><span>reservados</span></div><div><b>${cont('vendido')+cont('alugado')}</b><span>vendidos / alugados</span></div><div><b>${cont('pausado')}</b><span>pausados</span></div></div>
+   <div class="tabs">${[['todos','Todos'],['ativo','No ar'],['reservado','Reservados'],['pausado','Pausados'],['vendido','Vendidos'],['alugado','Alugados'],['arquivado','Lixeira']].map(([k,l])=>`<button data-f="${k}" aria-pressed="${FILTRO===k}">${l}</button>`).join('')}</div>
+   <div class="list">${vis.length?vis.map(i=>{const f=(i.img||[])[0];return `<div class="row">${f?`<img src="${esc(fotoSrc(f))}" alt="">`:'<div class="noimg">sem foto</div>'}
+     <div><h4><span class="st ${esc(i.st||'ativo')}">${STL[i.st||'ativo']}</span>${esc(i.ti||i.t)}</h4><div class="small muted">Cód. ${esc(i.c)} · ${esc(i.b||'')}${i.b?', ':''}${esc(i.cid||'')} · ${[i.v?brl(i.v):'',i.a?brl(i.a)+'/mês':''].filter(Boolean).join(' · ')||'sem valor'}${i.img&&i.img.length?' · '+i.img.length+' fotos':''}</div></div>
+     <div class="acts"><button class="btn sm" data-fi="${esc(i.c)}">Ficha</button><button class="btn sm" data-ed="${esc(i.c)}">Editar</button><a class="btn sm" href="../#imovel-${esc(i.c)}" target="_blank" rel="noopener">Ver</a>${(i.st||'ativo')==='arquivado'?`<button class="btn sm" data-rest="${esc(i.c)}">Restaurar</button><button class="btn sm bad" data-del="${esc(i.c)}">Excluir de vez</button>`:`<button class="btn sm bad" data-arq="${esc(i.c)}">Lixeira</button>`}</div></div>`}).join(''):`<div class="card muted" style="text-align:center">${FILTRO==='todos'?'Nenhum imóvel cadastrado ainda. Toque em <b>+ Cadastrar imóvel</b> ou importe um agenciamento seu da Innovar pelo código.':'Nada aqui.'}</div>`}</div>`;
+  $('#bNovo').onclick=()=>telaForm(null);
+  $('#bImp').onclick=importar;
+  $$('[data-f]').forEach(b=>b.onclick=()=>{FILTRO=b.dataset.f;telaLista()});
+  $$('[data-fi]').forEach(b=>b.onclick=()=>ficha(DB.imoveis.find(i=>i.c===b.dataset.fi)));
+  $$('[data-ed]').forEach(b=>b.onclick=()=>telaForm(DB.imoveis.find(i=>i.c===b.dataset.ed)));
+  $$('[data-arq]').forEach(b=>b.onclick=()=>mudarSt(b.dataset.arq,'arquivado','Imóvel movido para a lixeira e tirado do site.'));
+  $$('[data-rest]').forEach(b=>b.onclick=()=>mudarSt(b.dataset.rest,'pausado','Imóvel restaurado como pausado. Edite e coloque no ar quando quiser.'));
+  $$('[data-del]').forEach(b=>b.onclick=async()=>{const c=b.dataset.del;if(prompt('Para excluir de vez, digite o código do imóvel: '+c)!==c)return toast('Exclusão cancelada.');DB.imoveis=DB.imoveis.filter(i=>i.c!==c);try{await gravar('Exclui imóvel '+c);if(PRIV&&PRIV[c]){delete PRIV[c];await gravarCofre('Remove dados privados')}toast('Imóvel excluído.');telaLista()}catch(e){toast(e.message,6000)}});
+}
+function ficha(i){
+  const p=(PRIV||{})[i.c]||{};const L=(a,b)=>b?`<tr><th>${a}</th><td>${esc(b)}</td></tr>`:'';
+  const txt=[`*${i.ti}*`,`Cód. ${i.c} · ${i.t}`,`${i.b?i.b+', ':''}${i.cid}`,i.v?'Venda: '+brl(i.v):'',i.a?'Aluguel: '+brl(i.a)+'/mês':'',i.cond?'Condomínio: '+brl(i.cond):'',[i.m2&&i.m2+' m²',i.q&&i.q+' quartos',i.s&&i.s+' suíte(s)',i.bh&&i.bh+' banheiro(s)',i.g&&i.g+' vaga(s)'].filter(Boolean).join(' · '),(i.carac||[]).join(', '),'',i.desc||'','','Anderson Alves — Estrategista Patrimonial INNOVAR','WhatsApp (51) 98416-8848'].filter((x,k,a)=>x!==''||a[k-1]!=='').join('\n');
+  $('#app').innerHTML=`<p class="muted small" style="margin:0 0 6px"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p>
+  <div class="card g"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:end"><div><p class="muted small" style="margin:0">Ficha de prospecção · uso interno</p><h1 style="font-size:32px">${esc(i.ti)}</h1></div><div style="display:flex;gap:8px"><button class="btn" id="bCop">Copiar texto para o cliente</button><button class="btn" onclick="print()">Imprimir</button></div></div>
+  ${(i.img||[]).length?`<div class="fotos">${i.img.slice(0,8).map(x=>`<div class="ft"><img src="${esc(fotoSrc(x))}" alt=""></div>`).join('')}</div>`:''}
+  <style>.fx{width:100%;border-collapse:collapse}.fx th,.fx td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}.fx th{width:38%;color:var(--muted);font-weight:500}</style>
+  <div class="g g2"><div><h3 style="font-size:19px;color:var(--brand-d);margin-bottom:6px">O que o cliente vê</h3><table class="fx">${L('Código',i.c)}${L('Situação',STL[i.st||'ativo'])}${L('Tipo',i.t)}${L('Cidade',i.cid)}${L('Bairro',i.b)}${L('Venda',brl(i.v))}${L('Aluguel',i.a?brl(i.a)+'/mês':'')}${L('Condomínio',brl(i.cond))}${L('IPTU (ano)',brl(i.iptu))}${L('Área privativa',i.m2&&i.m2+' m²')}${L('Área total',i.mt&&i.mt+' m²')}${L('Quartos',i.q)}${L('Suítes',i.s)}${L('Banheiros',i.bh)}${L('Vagas',i.g)}${L('Características',(i.carac||[]).join(', '))}</table></div>
+  <div style="background:#FFF9EC;border-radius:14px;padding:12px"><h3 style="font-size:19px;color:#9A6200;margin-bottom:6px">🔒 Só para o corretor</h3>${Object.keys(p).length?`<table class="fx">${PCAMPOS.map(([k,l])=>L(l,p[k])).join('')}</table>`:'<p class="muted small">Nenhum dado privado cadastrado. Use Editar › Dados do corretor.</p>'}</div></div>
+  ${i.desc?`<div><h3 style="font-size:19px;color:var(--brand-d)">Descrição</h3><p style="white-space:pre-line;margin:6px 0 0">${esc(i.desc)}</p></div>`:''}</div>`;
+  $('#bVolta').onclick=e=>{e.preventDefault();telaLista()};
+  $('#bCop').onclick=async()=>{try{await navigator.clipboard.writeText(txt);toast('Texto copiado, sem dados privados.')}catch(e){prompt('Copie o texto:',txt)}};
+}
+async function mudarSt(c,st,msg){const i=DB.imoveis.find(x=>x.c===c);const ant=i.st;i.st=st;try{await gravar('Status '+c+': '+st);toast(msg);telaLista()}catch(e){i.st=ant;toast(e.message,6000)}}
+async function importar(){
+  const c=(prompt('Código do imóvel na Innovar (o número que aparece no anúncio):')||'').replace(/\D/g,'');if(!c)return;
+  if(DB.imoveis.some(i=>i.c===c))return toast('Esse código já está no seu painel.');
+  try{if(!CAT)CAT=await (await fetch('../catalogo.json?t='+Date.now())).json()}catch(e){return toast('Não consegui abrir a lista da Innovar agora.')}
+  const x=(CAT.imoveis||[]).find(i=>String(i.c)===c);
+  if(!x)return toast('Código '+c+' não encontrado na última lista da Innovar ('+(CAT.gerado||'')+'). Cadastre manualmente.',6000);
+  telaForm({c:x.c,fin:x.v&&x.a?'ambos':x.v?'venda':'aluguel',t:x.t,ti:x.ti,cid:x.cid,b:x.b,v:x.v,a:x.a,at:x.at,m2:x.m2,q:x.q,s:x.s,bh:x.bh,g:x.g,mob:x.mob,img:x.img||[],desc:x.d?x.d+'.':'',carac:[],st:'ativo',origem:'innovar'},true);
+}
+function telaForm(i,novo){
+  const n=!i||novo;i=JSON.parse(JSON.stringify(i||{c:proxCod(),fin:'venda',st:'ativo',img:[],carac:[]}));i.carac=i.carac||[];i.img=i.img||[];
+  ED={orig:n?null:i.c,i,novas:[]};const pv=Object.assign({},(PRIV||{})[i.c]||{});if(i.origem==='innovar'&&!pv.cod_ext)pv.cod_ext=i.c;
+  const sel=(id,ops,v)=>`<select id="${id}">${ops.map(o=>{const[k,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(k)}" ${String(v??'')===String(k)?'selected':''}>${esc(l)}</option>`}).join('')}</select>`;
+  const nn=(id,lab,v,ph)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(v??'')}" placeholder="${ph||''}"></label>`;
+  const rs=(id,lab,v)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(mil(v))}" placeholder="R$"></label>`;
+  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><p class="muted small" style="margin:0"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p><h1 style="font-size:36px">${n?'Cadastrar imóvel':'Editar imóvel'}</h1></div>${i.origem==='innovar'?'<span class="hint">Dados importados da Innovar. Confira e complete antes de salvar.</span>':''}</div>
+  <form class="card" id="fm" autocomplete="off">
+   <div class="sec"><h3><i>1</i>Dados principais</h3>
+    <div class="g g4"><label>Código<input id="c" value="${esc(i.c)}" required></label><label>Finalidade${sel('fin',[['venda','Venda'],['aluguel','Aluguel'],['ambos','Venda e aluguel']],i.fin)}</label><label>Tipo${sel('t',TIPOS.includes(i.t)||!i.t?TIPOS:[i.t,...TIPOS],i.t||'Apartamento')}</label><label>Situação no site${sel('st',[['ativo','No ar'],['reservado','Reservado'],['pausado','Pausado (fora do site)'],['vendido','Vendido'],['alugado','Alugado']],i.st||'ativo')}</label></div>
+    <label>Título do anúncio<input id="ti" value="${esc(i.ti||'')}" maxlength="90" placeholder="Ex.: Casa com 3 quartos e pátio no Centro de Sapucaia do Sul"></label>
+    <div class="chk"><label><input type="checkbox" id="dest" ${i.dest?'checked':''}> Destaque na página inicial</label><label><input type="checkbox" id="excl" ${i.excl?'checked':''}> Exclusividade</label></div>
+   </div>
+   <div class="sec"><h3><i>2</i>Localização</h3>
+    <div class="g g2"><label>Cidade<input id="cid" list="dlCid" value="${esc(i.cid||'Sapucaia do Sul')}"></label><label>Bairro<input id="b" value="${esc(i.b||'')}"></label></div>
+    <datalist id="dlCid">${CIDADES.map(c=>`<option>${esc(c)}</option>`).join('')}</datalist>
+    <p class="small muted" style="margin:0">O cliente vê só a cidade e o bairro. Endereço, CEP e condomínio vão no bloco 🔒 Dados do corretor, que é privado.</p>
+   </div>
+   <div class="sec"><h3><i>3</i>Valores</h3>
+    <div class="g g4">${rs('v','Valor de venda',i.v)}${rs('a','Aluguel (mês)',i.a)}${rs('cond','Condomínio (mês)',i.cond)}${rs('iptu','IPTU (ano)',i.iptu)}</div>
+    <div class="chk"><label><input type="checkbox" id="ocv" ${i.ocv?'checked':''}> Não mostrar o valor (Consulte)</label></div>
+   </div>
+   <div class="sec"><h3><i>4</i>Medidas e cômodos</h3>
+    <div class="g g4">${nn('m2','Área privativa (m²)',i.m2)}${nn('mt','Área total / terreno (m²)',i.mt)}${nn('q','Quartos',i.q)}${nn('s','Suítes',i.s)}${nn('bh','Banheiros',i.bh)}${nn('g','Vagas',i.g)}<label>Mobília${sel('mob',[['0','Sem mobília'],['2','Semimobiliado'],['1','Mobiliado']],String(i.mob||0))}</label>${nn('ano','Ano de construção',i.ano)}</div>
+   </div>
+   <div class="sec"><h3><i>5</i>Características</h3>
+    ${Object.entries(CARAC).map(([g,l])=>`<div><p class="small muted" style="margin:0 0 6px;font-weight:600">${g}</p><div class="chk">${l.map(x=>`<label><input type="checkbox" name="carac" value="${esc(x)}" ${i.carac.includes(x)?'checked':''}> ${esc(x)}</label>`).join('')}</div></div>`).join('')}
+    <label>Outras características (separe por vírgula)<input id="carac2" value="${esc(i.carac.filter(x=>!Object.values(CARAC).flat().includes(x)).join(', '))}"></label>
+   </div>
+   <div class="sec"><h3><i>6</i>Descrição</h3>
+    <label>Texto do anúncio<textarea id="desc" placeholder="Conte o que o imóvel tem de melhor: sol da manhã, pátio, rua tranquila, perto do Trensurb...">${esc(i.desc||'')}</textarea></label>
+    <div class="g g2"><label>Vídeo (link do YouTube ou Instagram)<input id="vid" value="${esc(i.vid||'')}" placeholder="https://"></label><label>Tour virtual (link)<input id="tour" value="${esc(i.tour||'')}" placeholder="https://"></label></div>
+   </div>
+   <div class="sec"><h3><i>7</i>Fotos</h3>
+    <div class="drop" id="drop"><b>Toque para escolher fotos</b> ou arraste aqui<br><span class="small muted">A primeira é a capa. As fotos são reduzidas automaticamente para o site ficar rápido.</span></div>
+    <div class="fotos" id="fotos"></div>
+   </div>
+   <div class="sec" style="background:#FFF9EC;margin:0 -22px;padding:20px 22px;border-radius:0 0 14px 14px"><h3><i>🔒</i>Dados do corretor (privados)</h3>
+    <p class="small muted" style="margin:0">Visíveis só aqui no painel, criptografados. Use na prospecção e no atendimento.</p>
+    <div class="g g3">${PCAMPOS.filter(x=>x[0]!=='obs').map(([k,l])=>`<label>${l}<input id="p_${k}" value="${esc((pv[k])||'')}"${k==='cep'?' inputmode="numeric" placeholder="93000-000"':k==='dtag'||k==='autv'?' type="date"':''}></label>`).join('')}</div>
+    <label>Observações internas<textarea id="p_obs" style="min-height:90px" placeholder="Motivo da venda, urgência, aceita contraproposta, histórico de visitas...">${esc(pv.obs||'')}</textarea></label>
+   </div>
+   <div class="save"><button type="button" class="btn" id="bCanc">Cancelar</button><button type="submit" class="btn pri" id="bSalvar">Salvar e publicar</button></div>
+  </form>`;
+  desenharFotos();
+  $('#bVolta').onclick=e=>{e.preventDefault();sair()};$('#bCanc').onclick=sair;
+  $('#drop').onclick=()=>$('#fFotos').click();
+  $('#drop').ondragover=e=>{e.preventDefault()};$('#drop').ondrop=e=>{e.preventDefault();addFotos(e.dataTransfer.files)};
+  $$('#v,#a,#cond,#iptu').forEach(x=>x.oninput=()=>{const d=x.value.replace(/\D/g,'');x.value=d?Number(d).toLocaleString('pt-BR'):''});
+  $('#p_cep').onblur=async()=>{const d=$('#p_cep').value.replace(/\D/g,'');if(d.length!==8)return;try{const r=await (await fetch('https://viacep.com.br/ws/'+d+'/json/')).json();if(r.erro)return toast('CEP não encontrado.');$('#cid').value=r.localidade||$('#cid').value;if(r.bairro)$('#b').value=r.bairro;if(r.logradouro&&!$('#p_end').value)$('#p_end').value=r.logradouro+', ';$('#p_cep').value=d.slice(0,5)+'-'+d.slice(5)}catch(e){}};
+  $('#fm').onsubmit=e=>{e.preventDefault();salvar()};
+}
+function sair(){if(ED&&ED.novas.length&&!confirm('Sair sem salvar? As fotos novas serão descartadas.'))return;ED=null;telaLista()}
+function desenharFotos(){
+  const L=ED.i.img;$('#fotos').innerHTML=L.map((x,k)=>`<div class="ft"><img src="${esc(fotoSrc(x))}" alt="">${k===0?'<span class="cap">Capa</span>':''}<div class="bar"><span><button type="button" data-mv="${k}" data-d="-1" aria-label="Mover para a esquerda">‹</button> <button type="button" data-mv="${k}" data-d="1" aria-label="Mover para a direita">›</button></span><button type="button" data-rm="${k}" aria-label="Remover foto">✕</button></div></div>`).join('');
+  $$('[data-mv]').forEach(b=>b.onclick=()=>{const k=+b.dataset.mv,j=k+(+b.dataset.d);if(j<0||j>=L.length)return;[L[k],L[j]]=[L[j],L[k]];desenharFotos()});
+  $$('[data-rm]').forEach(b=>b.onclick=()=>{L.splice(+b.dataset.rm,1);desenharFotos()});
+}
+$('#fFotos').onchange=e=>{addFotos(e.target.files);e.target.value=''};
+async function addFotos(fs){
+  for(const f of [...fs]){if(!/^image\//.test(f.type))continue;
+    try{const full=await reduzir(f,1600,.82),th=await reduzir(f,640,.78);const u=URL.createObjectURL(th);ED.novas.push({u,full,th});ED.i.img.push([u,u])}catch(e){toast(e.message)}}
+  desenharFotos();
+}
+async function salvar(){
+  const g=id=>$('#'+id).value.trim(),b=$('#bSalvar');
+  const i=ED.i;const c=g('c').replace(/[^\w-]/g,'');if(!c)return toast('Informe o código.');
+  if(DB.imoveis.some(x=>x.c===c&&x.c!==ED.orig))return toast('Já existe um imóvel com o código '+c+'.');
+  Object.assign(i,{c,fin:g('fin'),t:g('t'),st:g('st'),ti:g('ti'),dest:$('#dest').checked?1:0,excl:$('#excl').checked?1:0,cid:g('cid'),b:g('b'),
+    v:g('fin')==='aluguel'?null:num(g('v')),a:g('fin')==='venda'?null:num(g('a')),cond:num(g('cond')),iptu:num(g('iptu')),ocv:$('#ocv').checked?1:0,
+    m2:num(g('m2')),mt:num(g('mt')),q:num(g('q')),s:num(g('s')),bh:num(g('bh')),g:num(g('g')),mob:+g('mob')||0,ano:num(g('ano')),
+    carac:[...$$('input[name=carac]:checked').map(x=>x.value),...g('carac2').split(',').map(x=>x.trim()).filter(Boolean)],desc:g('desc'),vid:g('vid'),tour:g('tour')});
+  if(!i.ti)i.ti=i.t+(i.q?' com '+i.q+(i.q>1?' quartos':' quarto'):'')+(i.fin==='aluguel'?' para alugar':' à venda')+(i.b?' no '+i.b:'')+(i.cid?', '+i.cid:'');
+  if(i.a&&!i.at)i.at=i.a+(i.cond||0)+Math.round((i.iptu||0)/12);
+  if(i.fin!=='venda'&&i.a)i.at=i.a+(i.cond||0)+Math.round((i.iptu||0)/12);
+  i.d=i.desc?i.desc.split(/\n/)[0].slice(0,220):i.ti;
+  if(!i.dt)i.dt=Date.now();i.up=Date.now();
+  b.disabled=true;
+  try{
+    const ts=Date.now();let k=0;
+    for(const nf of ED.novas){const pos=i.img.findIndex(x=>x[0]===nf.u);if(pos<0)continue;k++;b.textContent='Enviando foto '+k+' de '+ED.novas.filter(n=>i.img.some(x=>x[0]===n.u)).length+'…';
+      const base='fotos/'+c+'/'+ts+'-'+k;await subirFoto(base+'.jpg',nf.full);await subirFoto(base+'-p.jpg',nf.th);i.img[pos]=[base+'-p.jpg',base+'.jpg']}
+    b.textContent='Publicando…';
+    await carregar();
+    const idx=DB.imoveis.findIndex(x=>x.c===(ED.orig||c));if(idx>=0)DB.imoveis[idx]=i;else DB.imoveis.push(i);
+    await gravar((ED.orig?'Atualiza':'Cadastra')+' imóvel '+c);
+    const pv={};PCAMPOS.forEach(([k])=>{const v=g('p_'+k);if(v)pv[k]=v});if(ED.orig&&ED.orig!==c)delete PRIV[ED.orig];
+    if(Object.keys(pv).length||PRIV[c]){PRIV[c]=pv;b.textContent='Salvando dados privados…';await gravarCofre('Atualiza dados privados')}
+    ED.novas=[];toast('Salvo! O site atualiza em cerca de 1 minuto.',5000);FILTRO='todos';telaLista();
+  }catch(e){toast(e.message,7000);b.disabled=false;b.textContent='Salvar e publicar'}
+}
+$('#bSair').onclick=()=>{if(!confirm('Sair e apagar a chave deste aparelho?'))return;ls.set('token',null);TOKEN=null;KEY=null;PRIV=null;telaEntrar()};
+telaEntrar();
+})();
+</script>
+</body>
+</html>
