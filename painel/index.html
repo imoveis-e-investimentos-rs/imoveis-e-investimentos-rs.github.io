@@ -84,7 +84,7 @@ ol.passos{margin:6px 0 0;padding-left:20px;display:grid;gap:6px}
 <header class="top"><div class="in">
   <span class="lg"><img src="../logo-anderson.png" alt=""></span>
   <div><b>Painel de imóveis</b><small>Anderson Alves · cadastros do site</small></div>
-  <div class="sp"><a class="btn sm" href="../" target="_blank" rel="noopener">Ver o site</a><button class="btn sm" id="bSair" hidden>Sair</button></div>
+  <div class="sp"><a class="btn sm" href="https://claude.ai/artifact/8Y8ZeSbFWjP8A6WFPwXgNe" target="_blank" rel="noopener">PRO IMOBILIÁRIA</a><a class="btn sm" href="../" target="_blank" rel="noopener">Ver o site</a><button class="btn sm" id="bSair" hidden>Sair</button></div>
 </div></header>
 <main class="wrap" id="app"></main>
 <div class="toast" id="toast" hidden></div>
@@ -108,7 +108,10 @@ const mil=v=>v?Number(v).toLocaleString('pt-BR'):'';
 const ls={get(k){try{return localStorage.getItem('painel.'+k)}catch(e){return null}},set(k,v){try{v==null?localStorage.removeItem('painel.'+k):localStorage.setItem('painel.'+k,v)}catch(e){}}};
 let TOKEN=ls.get('token'),DB={atualizado:'',imoveis:[]},SHA=null,ED=null,FILTRO='todos',CAT=null;
 const STL={ativo:'No ar',reservado:'Reservado',pausado:'Pausado',vendido:'Vendido',alugado:'Alugado',arquivado:'Na lixeira'};
-const PRIVARQ='privado.enc.json';let PRIV=null,PSHA=null,KEY=null,SALT=null;
+const PRIVARQ='privado.enc.json';let PRIV=null,PSHA=null,KEY=null,SALT=null,PRE=null;
+(()=>{const h=location.hash;if(!/^#novo\?/.test(h))return;const q=new URLSearchParams(h.slice(6));const pub={},priv={};
+ ['t','fin','cid','b','ti','desc'].forEach(k=>{if(q.get(k))pub[k]=q.get(k)});['v','a','q','m2','g','bh'].forEach(k=>{const v=Number(String(q.get(k)||'').replace(/\D/g,''));if(v)pub[k]=v});
+ ['prop','tel','email','end','ref','obs','lead','cep'].forEach(k=>{if(q.get(k))priv[k]=q.get(k)});PRE={pub,priv};history.replaceState(null,'',location.pathname)})();
 const u8b64=u=>{let r='';for(let i=0;i<u.length;i+=0x8000)r+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(r)};
 const b64u8=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function derivar(pw,salt){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:250000,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
@@ -123,7 +126,7 @@ async function gravarCofre(msg){
   const body={message:msg,content:b64(JSON.stringify({v:1,alg:'PBKDF2-SHA256-250k/AES-GCM',s:u8b64(SALT),iv:u8b64(iv),d:u8b64(ct)})),branch:BR};if(PSHA)body.sha=PSHA;
   const r=await gh(PRIVARQ,{method:'PUT',headers:{Authorization:'Bearer '+TOKEN,Accept:'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});PSHA=r.content.sha;
 }
-const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código na Innovar / Jetimob'],['obs','Observações internas']];
+const PCAMPOS=[['end','Endereço completo (rua e número)'],['compl','Complemento / apto / bloco'],['cep','CEP'],['cond_n','Condomínio / edifício'],['ref','Ponto de referência'],['prop','Proprietário'],['tel','Telefone / WhatsApp do proprietário'],['email','E-mail do proprietário'],['chave','Onde está a chave'],['visita','Horários de visita'],['vmin','Valor mínimo aceito'],['com','Comissão (%)'],['mat','Matrícula / registro'],['iptu_n','Inscrição do IPTU'],['autv','Autorização de venda válida até'],['dtag','Data do agenciamento'],['cod_ext','Código na Innovar / Jetimob'],['lead','Lead de origem (PRO IMOBILIÁRIA)'],['obs','Observações internas']];
 function toast(m,t){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(()=>e.hidden=true,t||3500)}
 const b64=s=>{const b=new TextEncoder().encode(s);let r='';for(let i=0;i<b.length;i+=0x8000)r+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(r)};
 const unb64=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g,'')),c=>c.charCodeAt(0)));
@@ -170,7 +173,7 @@ function telaEntrar(){
     <li>Gere, copie e cole aqui. Não envie essa chave para ninguém.</li></ol></div></div>`;
   if(TOKEN){$('#tk').value=TOKEN}
   $('#bEntrar').onclick=async()=>{const v=$('#tk').value.trim(),pw=$('#pw').value;if(!v)return toast('Cole a chave de acesso.');if(pw.length<8)return toast('A senha dos dados privados precisa ter pelo menos 8 caracteres.');TOKEN=v;const b=$('#bEntrar');b.disabled=true;b.textContent='Verificando…';
-    try{await carregar();const st=await abrirCofre(pw);if(st==='novo'&&prompt('Primeiro acesso: digite a senha de novo para confirmar')!==pw){KEY=null;throw new Error('As senhas não conferem.')}ls.set('token',v);telaLista()}catch(e){TOKEN=null;toast(e.message,6000);b.disabled=false;b.textContent='Entrar'}};
+    try{await carregar();const st=await abrirCofre(pw);if(st==='novo'&&prompt('Primeiro acesso: digite a senha de novo para confirmar')!==pw){KEY=null;throw new Error('As senhas não conferem.')}ls.set('token',v);telaLista();if(PRE){telaForm(null);toast('Dados do lead do PRO IMOBILIÁRIA carregados. Complete fotos e valores e salve.',6000)}}catch(e){TOKEN=null;toast(e.message,6000);b.disabled=false;b.textContent='Entrar'}};
 }
 function telaLista(){
   $('#bSair').hidden=false;ED=null;
@@ -215,12 +218,12 @@ async function importar(){
   telaForm({c:x.c,fin:x.v&&x.a?'ambos':x.v?'venda':'aluguel',t:x.t,ti:x.ti,cid:x.cid,b:x.b,v:x.v,a:x.a,at:x.at,m2:x.m2,q:x.q,s:x.s,bh:x.bh,g:x.g,mob:x.mob,img:x.img||[],desc:x.d?x.d+'.':'',carac:[],st:'ativo',origem:'innovar'},true);
 }
 function telaForm(i,novo){
-  const n=!i||novo;i=JSON.parse(JSON.stringify(i||{c:proxCod(),fin:'venda',st:'ativo',img:[],carac:[]}));i.carac=i.carac||[];i.img=i.img||[];
-  ED={orig:n?null:i.c,i,novas:[]};const pv=Object.assign({},(PRIV||{})[i.c]||{});if(i.origem==='innovar'&&!pv.cod_ext)pv.cod_ext=i.c;
+  const n=!i||novo;i=JSON.parse(JSON.stringify(i||Object.assign({c:proxCod(),fin:'venda',st:'pausado',img:[],carac:[]},PRE?PRE.pub:{})));i.carac=i.carac||[];i.img=i.img||[];
+  ED={orig:n?null:i.c,i,novas:[]};const pv=Object.assign({},(PRIV||{})[i.c]||{},n&&PRE?PRE.priv:{});if(i.origem==='innovar'&&!pv.cod_ext)pv.cod_ext=i.c;
   const sel=(id,ops,v)=>`<select id="${id}">${ops.map(o=>{const[k,l]=Array.isArray(o)?o:[o,o];return `<option value="${esc(k)}" ${String(v??'')===String(k)?'selected':''}>${esc(l)}</option>`}).join('')}</select>`;
   const nn=(id,lab,v,ph)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(v??'')}" placeholder="${ph||''}"></label>`;
   const rs=(id,lab,v)=>`<label>${lab}<input id="${id}" inputmode="numeric" value="${esc(mil(v))}" placeholder="R$"></label>`;
-  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><p class="muted small" style="margin:0"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p><h1 style="font-size:36px">${n?'Cadastrar imóvel':'Editar imóvel'}</h1></div>${i.origem==='innovar'?'<span class="hint">Dados importados da Innovar. Confira e complete antes de salvar.</span>':''}</div>
+  $('#app').innerHTML=`<div style="display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px"><div><p class="muted small" style="margin:0"><a href="#" id="bVolta" style="color:var(--brand-d)">‹ Meus imóveis</a></p><h1 style="font-size:36px">${n?'Cadastrar imóvel':'Editar imóvel'}</h1></div>${i.origem==='innovar'?'<span class="hint">Dados importados da Innovar. Confira e complete antes de salvar.</span>':PRE&&n?'<span class="hint">Agenciamento vindo do <b>PRO IMOBILIÁRIA</b>. Começa como pausado: coloque no ar quando estiver pronto.</span>':''}</div>
   <form class="card" id="fm" autocomplete="off">
    <div class="sec"><h3><i>1</i>Dados principais</h3>
     <div class="g g4"><label>Código<input id="c" value="${esc(i.c)}" required></label><label>Finalidade${sel('fin',[['venda','Venda'],['aluguel','Aluguel'],['ambos','Venda e aluguel']],i.fin)}</label><label>Tipo${sel('t',TIPOS.includes(i.t)||!i.t?TIPOS:[i.t,...TIPOS],i.t||'Apartamento')}</label><label>Situação no site${sel('st',[['ativo','No ar'],['reservado','Reservado'],['pausado','Pausado (fora do site)'],['vendido','Vendido'],['alugado','Alugado']],i.st||'ativo')}</label></div>
@@ -266,7 +269,7 @@ function telaForm(i,novo){
   $('#p_cep').onblur=async()=>{const d=$('#p_cep').value.replace(/\D/g,'');if(d.length!==8)return;try{const r=await (await fetch('https://viacep.com.br/ws/'+d+'/json/')).json();if(r.erro)return toast('CEP não encontrado.');$('#cid').value=r.localidade||$('#cid').value;if(r.bairro)$('#b').value=r.bairro;if(r.logradouro&&!$('#p_end').value)$('#p_end').value=r.logradouro+', ';$('#p_cep').value=d.slice(0,5)+'-'+d.slice(5)}catch(e){}};
   $('#fm').onsubmit=e=>{e.preventDefault();salvar()};
 }
-function sair(){if(ED&&ED.novas.length&&!confirm('Sair sem salvar? As fotos novas serão descartadas.'))return;ED=null;telaLista()}
+function sair(){if(ED&&ED.novas.length&&!confirm('Sair sem salvar? As fotos novas serão descartadas.'))return;ED=null;PRE=null;telaLista()}
 function desenharFotos(){
   const L=ED.i.img;$('#fotos').innerHTML=L.map((x,k)=>`<div class="ft"><img src="${esc(fotoSrc(x))}" alt="">${k===0?'<span class="cap">Capa</span>':''}<div class="bar"><span><button type="button" data-mv="${k}" data-d="-1" aria-label="Mover para a esquerda">‹</button> <button type="button" data-mv="${k}" data-d="1" aria-label="Mover para a direita">›</button></span><button type="button" data-rm="${k}" aria-label="Remover foto">✕</button></div></div>`).join('');
   $$('[data-mv]').forEach(b=>b.onclick=()=>{const k=+b.dataset.mv,j=k+(+b.dataset.d);if(j<0||j>=L.length)return;[L[k],L[j]]=[L[j],L[k]];desenharFotos()});
@@ -302,7 +305,7 @@ async function salvar(){
     await gravar((ED.orig?'Atualiza':'Cadastra')+' imóvel '+c);
     const pv={};PCAMPOS.forEach(([k])=>{const v=g('p_'+k);if(v)pv[k]=v});if(ED.orig&&ED.orig!==c)delete PRIV[ED.orig];
     if(Object.keys(pv).length||PRIV[c]){PRIV[c]=pv;b.textContent='Salvando dados privados…';await gravarCofre('Atualiza dados privados')}
-    ED.novas=[];toast('Salvo! O site atualiza em cerca de 1 minuto.',5000);FILTRO='todos';telaLista();
+    ED.novas=[];PRE=null;toast('Salvo! O site atualiza em cerca de 1 minuto.',5000);FILTRO='todos';telaLista();
   }catch(e){toast(e.message,7000);b.disabled=false;b.textContent='Salvar e publicar'}
 }
 $('#bSair').onclick=()=>{if(!confirm('Sair e apagar a chave deste aparelho?'))return;ls.set('token',null);TOKEN=null;KEY=null;PRIV=null;telaEntrar()};
