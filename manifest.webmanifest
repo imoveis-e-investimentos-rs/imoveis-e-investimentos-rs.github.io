@@ -1,17 +1,30 @@
 {
-  "name": "Imóveis e Investimentos RS · Anderson Alves",
-  "short_name": "Imóveis RS",
-  "description": "Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação da CAIXA e atendimento direto do corretor.",
+  "name": "PROIMOB INVESTIMENTOS · Anderson Alves",
+  "short_name": "PROIMOB",
+  "description": "Imóveis / Cartas de crédito e Investimentos com segurança e confiança. Sapucaia do Sul, Vale dos Sinos e Grande Porto Alegre.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#00102A",
-  "theme_color": "#00102A",
+  "background_color": "#1E1E1E",
+  "theme_color": "#1E1E1E",
   "icons": [
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
-    {"src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

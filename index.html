@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Imóveis e Investimentos RS</title>
+<title>PROIMOB INVESTIMENTOS · Imóveis, cartas de crédito e investimentos</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Casas, apartamentos, terrenos e lançamentos em São Leopoldo, Sapucaia do Sul, Canoas, Novo Hamburgo e região metropolitana de Porto Alegre. Atendimento de Anderson Alves, corretor da Innovar Imobiliária.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Barlow+Condensed:wght@600;700;800&family=Poppins:wght@400;500;600&display=swap">
 <style>
 /* Layout: portal de busca — barra fixa, busca no topo, vitrines horizontais, grade de resultados e ficha do imóvel em rota própria */
 :root{
@@ -375,35 +375,98 @@ footer{background:var(--navy);color:#C9D0DC}
 .agv h3{margin:0 0 6px;font-size:22px}.agv p{margin:0;color:var(--muted);max-width:62ch}
 @media (max-width:760px){.agv{grid-template-columns:1fr}}
 a.chip{text-decoration:none}
+
+/* ===== VISUAL 4 (18/11/2026): PROIMOB INVESTIMENTOS · versão do cliente (preto, dourado e branco) ===== */
+:root,:root[data-theme="dark"]{color-scheme:light;--orange:#8C6D3B;--orange-ink:#fff;--royal:#2B2B2B;--navy:#1E1E1E;--brand:#8C6D3B;--brand-d:#6E5427;--sky:#C9B48A;--ice:#EFE6D2;--gold:#A8894F;
+  --bg:#F7F5F1;--surface:#fff;--surface-2:#F2EDE3;--line:#E4DDD0;--fg:#232323;--muted:#6B655C;--f-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#F7F5F1;--surface:#fff;--surface-2:#F2EDE3;--line:#E4DDD0;--fg:#232323;--muted:#6B655C;--royal:#2B2B2B;--orange:#8C6D3B}}
+h1,h2{font-family:var(--f-serif);text-transform:none;font-weight:600;letter-spacing:.2px}
+.blk-head h2,.sobre h2{font-size:clamp(28px,3.4vw,40px)}
+.eyebrow{color:var(--gold);font-family:var(--f-serif);font-weight:700;letter-spacing:2.4px}
+.tbar{background:#262626;color:#D8D2C6;font-size:12px}
+.tbar .tin{max-width:1200px;margin:0 auto;padding:6px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.tbar nav{display:flex}.tbar a{color:#E9E3D7;text-decoration:none;padding:2px 12px;border-left:1px solid #444;cursor:pointer}.tbar a:hover{color:#fff}
+.top{background:#fff;box-shadow:0 1px 0 var(--line)}
+.top .wrap{padding-block:14px;gap:24px}
+.brand.pm{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--fg);min-width:0}
+.mono{width:52px;height:56px;flex:none;background:linear-gradient(160deg,#9C7C45,#6E5427);color:#F6EBD3;display:grid;place-items:center;font-family:var(--f-serif);font-size:30px;font-weight:700;letter-spacing:-3px;border:1px solid #5A4520;box-shadow:inset 0 0 0 3px rgba(255,255,255,.18)}
+.mono i{font-style:normal;color:#fff}
+.bt{display:grid;gap:3px;text-align:left;min-width:0}
+.bt b{font-family:var(--f-serif);font-size:27px;font-weight:600;letter-spacing:.6px;line-height:1;color:#1E1E1E;white-space:nowrap}
+.bt span{font-size:11.5px;color:var(--muted);letter-spacing:.3px;line-height:1.3;border-top:2px solid var(--gold);padding-top:4px;max-width:44ch}
+.pmnav{margin-left:auto;gap:4px}
+.pmnav a{display:grid;text-align:center;gap:1px;padding:6px 14px;border-radius:0;background:none!important;color:var(--fg)}
+.pmnav a b{font-family:var(--f-serif);font-size:18px;font-weight:700;color:#8C6D3B;text-transform:uppercase;letter-spacing:1px;line-height:1.05}
+.pmnav a small{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.pmnav a:hover b{color:#1E1E1E}
+.menu-btn{border-color:var(--line);color:var(--fg)}
+@media (max-width:1120px){.pmnav a:last-child{display:none}}
+@media (max-width:980px){.pmnav{display:none}.menu-btn{display:grid;margin-left:auto}.tbar nav{display:none}.tbar .tin{justify-content:center}}
+@media (max-width:520px){.bt b{font-size:21px}.bt span{font-size:10px}.mono{width:42px;height:46px;font-size:24px}.top .wrap{gap:12px}}
+/* hero como a referência: foto de ambiente, título serifado no centro e busca translúcida */
+.hero.pmh{background:linear-gradient(rgba(20,18,15,.35),rgba(20,18,15,.55)),var(--hbg,radial-gradient(120% 90% at 70% 10%,#5B5348 0%,#2F2B26 55%,#1C1A17 100%));background-size:cover;background-position:center;color:#fff;overflow:hidden}
+.hero.pmh::before,.hero.pmh::after{display:none}
+.hero.pmh .wrap{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center;gap:12px;padding-block:96px 70px}
+.hero.pmh h1{font-family:var(--f-serif);font-weight:600;text-transform:none;font-size:clamp(42px,6.4vw,76px);color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.45);letter-spacing:.5px;line-height:1}
+.hero.pmh .lead{color:#F1ECE2;max-width:58ch;margin:0 0 16px;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.hero.pmh .search{width:min(980px,100%);background:rgba(255,255,255,.88);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:4px;border:0;box-shadow:0 18px 50px rgba(0,0,0,.3);text-align:left;color:var(--fg)}
+.hero.pmh .search::before{display:none}
+.hero.pmh .search .tabs button[aria-pressed="true"]{color:#1E1E1E;border-color:#8C6D3B}
+.hero.pmh .search select,.hero.pmh .search input{border-radius:2px}
+.hero.pmh .search .go{background:#2B2B2B;border-color:#2B2B2B;color:#fff;border-radius:2px;min-height:48px;font-weight:600;letter-spacing:.5px}
+.hero.pmh .search .go::before{content:"⌕ ";font-size:18px}
+.hero.pmh .search .go:hover{background:#000}
+.hlinks{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.hlinks a{color:#F1ECE2;font-size:13.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.hlinks a:hover{color:#fff}
+@media (max-width:860px){.hero.pmh .wrap{padding-block:56px 44px}}
+/* demais blocos no tom dourado */
+.btn{border-radius:4px}
+.btn.or{background:#8C6D3B;border-color:#8C6D3B;color:#fff}.btn.or:hover{background:#6E5427}
+.btn.pri{background:#2B2B2B;border-color:#2B2B2B;color:#fff}
+.card{border-radius:6px}
+.card .tag{background:#2B2B2B}
+.price{color:#1E1E1E}
+.chip{border-radius:4px}
+.chip:hover,.chip[aria-pressed="true"]{border-color:#8C6D3B;color:#6E5427}
+.sobre{border-radius:6px}.sobre .av{border-color:var(--ice);box-shadow:0 0 0 2px #8C6D3B}.sobre li::before{background:#8C6D3B}.sobre::after{border-color:var(--ice)}
+.agv{border-color:var(--sky);border-radius:6px;background:linear-gradient(120deg,#F2EDE3,#fff)}
+.agv h3{font-family:var(--f-serif);font-size:26px;text-transform:none}
+.iscab{background:linear-gradient(120deg,#1E1E1E,#3A342B)}
+footer{background:#1E1E1E;color:#CFC8BB}
+footer h3{font-family:var(--f-serif);text-transform:none;font-size:22px;color:#E8D9B8}
+.drawer nav{background:#1E1E1E}
+.instbar{background:#2B2B2B}
+.brand.pm .mono{display:grid;place-items:center;width:52px;height:56px;font-size:30px;color:#F6EBD3;letter-spacing:-2px;line-height:1;white-space:nowrap;overflow:visible;font-family:var(--f-serif);font-weight:700;padding-right:2px}
+.brand.pm .mono i{color:#fff;font-size:inherit}
+.brand.pm .bt{display:grid;width:min-content;gap:4px}
+.brand.pm .bt>b{white-space:nowrap;overflow:visible;text-overflow:clip}
+.brand.pm .bt>span{display:block;white-space:normal;overflow:visible;text-overflow:clip;font-size:11.5px;color:var(--muted);text-align:left;hyphens:none;max-width:none;letter-spacing:.2px}
+h1,h2,h3,.eyebrow,.price{font-variant-numeric:lining-nums}
+@media (max-width:520px){.brand.pm .bt>b{font-size:19px;letter-spacing:.1px}.brand.pm .bt>span{font-size:9.6px;line-height:1.25}.brand.pm .mono{width:40px;height:46px;font-size:22px}}
 </style>
-<meta property="og:title" content="Imóveis e Investimentos RS · Anderson Alves">
+<meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
 <meta property="og:image" content="retrato.jpg">
-<meta name="theme-color" content="#00102A">
+<meta name="theme-color" content="#1E1E1E">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Imóveis RS">
+<meta name="apple-mobile-web-app-title" content="PROIMOB">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2300102A'/%3E%3Cpath d='M6 21 20 9l14 12' fill='none' stroke='%23fff' stroke-width='3.4'/%3E%3Cpath d='M16 29l7-7m0 0h-5m5 0v5' fill='none' stroke='%23E98018' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <style>body{margin:0}img{max-width:100%}</style>
 </head>
 <body>
 
-<div class="instbar" id="instBar" role="region" aria-label="Instalar app"><span>📲 Tenha o app Imóveis RS no seu celular</span><button type="button" class="ib-go" data-instalar="1">Instalar</button><button type="button" class="ib-x" id="instX" aria-label="Fechar">×</button></div>
-<header class="top"><div class="wrap">
-  <a class="brand" href="#inicio" data-go="inicio" aria-label="Imóveis e Investimentos RS, início">
-    <svg class="mk" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 22 20 7l16 15" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/><path d="M10 20v14h20V20" fill="none" stroke="#fff" stroke-width="3.4"/><path d="M16 30l7-7m0 0h-5m5 0v5" fill="none" stroke="#E98018" stroke-width="3" stroke-linecap="round"/></svg>
-    <div><b>Imóveis &amp; Investimentos RS</b><span>Innovar Imobiliária · São Leopoldo</span></div>
-  </a>
-  <nav class="nav" aria-label="Principal">
-    <a href="#comprar" data-go="busca" data-tr="venda">Comprar</a>
-    <a href="#alugar" data-go="busca" data-tr="aluguel">Alugar</a>
-    <a href="./guias/">Guias</a>
-    <a href="#descubra" data-go="descubra">Quanto posso financiar</a>
-    <a href="#consorcio" data-go="consorcio">Consórcio</a>
-    <a class="wa" href="#" data-wa="geral">WhatsApp</a>
+<div class="instbar" id="instBar" role="region" aria-label="Instalar app"><span>📲 Tenha o app PROIMOB no seu celular</span><button type="button" class="ib-go" data-instalar="1">Instalar</button><button type="button" class="ib-x" id="instX" aria-label="Fechar">×</button></div>
+<header class="top"><div class="tbar"><div class="tin"><span>WhatsApp (51) 98416-8848 · CRECI-RS 057.384</span><nav aria-label="Atalhos"><a data-go="inicio">Início</a><a href="./guias/">Guias das cidades</a><a data-go="descubra">Quanto posso financiar</a><a href="#" data-wa="geral">Contato</a></nav></div></div><div class="wrap">
+  <a class="brand pm" href="#inicio" data-go="inicio" aria-label="PROIMOB INVESTIMENTOS, início"><span class="mono" aria-hidden="true">P<i>I</i></span><span class="bt"><b>PROIMOB INVESTIMENTOS</b><span>Imóveis / Cartas de crédito e Investimentos<br>com segurança e confiança</span></span></a>
+  <nav class="nav pmnav" aria-label="Principal">
+    <a href="#comprar" data-go="busca" data-tr="venda"><b>Comprar</b><small>Encontre seu imóvel</small></a>
+    <a href="#" data-lead="vender"><b>Vender</b><small>Agenciar meu imóvel</small></a>
+    <a href="#alugar" data-go="busca" data-tr="aluguel"><b>Alugar</b><small>Imóveis para alugar</small></a>
+    <a href="#consorcio" data-go="consorcio"><b>Cartas de crédito</b><small>Consórcio e investimentos</small></a>
   </nav>
-  <a class="logo-top" href="#inicio" data-go="inicio" aria-label="Anderson Alves, corretor especialista"><span class="lg"><img src="logo-anderson.png" alt="" width="56" height="56"></span><span><small>Corretor Especialista</small><b>Anderson Alves</b><em>CRECI-RS 057.384</em></span></a>
   <button class="menu-btn" type="button" data-menu="1" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </div></header>
 <div class="drawer" id="drawer" hidden><button class="scrim" type="button" data-menu="0" aria-label="Fechar menu"></button>
@@ -415,9 +478,9 @@ a.chip{text-decoration:none}
 <main id="app"><div class="wrap" style="padding-block:40px"><p class="muted">Carregando…</p></div></main>
 
 <footer><div class="wrap">
-  <div><h3>Imóveis &amp; Investimentos RS</h3><p class="small" style="margin:0">Compra, venda e aluguel de imóveis na região metropolitana de Porto Alegre, com atendimento direto do corretor.</p></div>
+  <div><h3>PROIMOB INVESTIMENTOS</h3><p class="small" style="margin:0">Imóveis / Cartas de crédito e Investimentos com segurança e confiança. Sapucaia do Sul, Vale dos Sinos e Grande Porto Alegre.</p></div>
   <div><h3>Encontre</h3><a data-go="busca" data-tr="venda">Comprar</a><a data-go="busca" data-tr="aluguel">Alugar</a><a data-go="busca" data-tr="venda" data-max="275000">Até R$ 275 mil (MCMV)</a><a data-go="favoritos">Meus favoritos</a><a href="./guias/" style="cursor:pointer">Guias das cidades</a><a href="#" data-instalar="1">📲 Instalar o app</a></div>
-  <div><h3>Ferramentas</h3><a data-go="simular">Simular financiamento</a><a data-go="consorcio">Consórcio sem juros</a><a data-lead="vender">Quero vender meu imóvel</a><a data-lead="avaliar">Agenciar meu imóvel</a></div>
+  <div><h3>Ferramentas</h3><a data-go="simular">Simular financiamento</a><a data-go="consorcio">Consórcio sem juros</a><a data-lead="vender">Quero vender meu imóvel</a><a data-lead="avaliar">Agenciar meu imóvel</a><a href="./painel/">Área do corretor</a></div>
   <div><h3>Contato</h3><p class="small" style="margin:0">Anderson Alves<br>Corretor de Imóveis · <span class="creci">CRECI-RS 057.384</span><br>WhatsApp <span style="user-select:all">(51) 98416-8848</span><br>Innovar Imobiliária · CRECI 25.520-J<br>Av. Feitoria, 178 · São Leopoldo/RS</p></div>
   <p class="legal">Imóveis agenciados pelo corretor Anderson Alves. Valores e disponibilidade sujeitos a confirmação. <a data-go="privacidade" style="display:inline;text-decoration:underline">Política de privacidade</a></p>
 </div></footer>
@@ -517,14 +580,12 @@ function vInicio(){
   const cnt=c=>IM.filter(i=>i.cid===c).length;
   const est=[['Primeiro imóvel','Até R$ 275 mil, com Minha Casa Minha Vida e FGTS.',{max:275000}],['Casas com pátio','Casas e sobrados para a família crescer.',{tipo:'Casa'}],['Apartamentos','Perto do centro, do trem e do trabalho.',{tipo:'Apartamento'}],['Alto padrão','Acima de R$ 900 mil, com acabamento superior.',{min:900000}],['Terrenos','Para construir do seu jeito ou investir.',{tipo:'Terreno'}],['Para investir','Imóveis comerciais e salas para renda.',{tipo:'Comercial'}]];
   window._EST=est;
-  return `<section class="hero"><div class="wrap">
-    <div><p class="eyebrow">Sapucaia do Sul · Vale dos Sinos · Grande Porto Alegre</p><h1>Seu imóvel no Vale dos Sinos e na <em>Grande Porto Alegre</em></h1>
-      <p class="lead">Atendimento direto do corretor para comprar, vender ou alugar: análise de crédito, simulação na hora e acompanhamento do primeiro contato até a escritura.</p>
-      <div class="hcta">${IM.length?`<button class="btn w" type="button" data-go="busca" data-tr="venda">Ver meus imóveis</button>`:`<button class="btn w" type="button" data-lead="vender">Quero vender meu imóvel</button>`}<a class="btn o" href="#" data-wa="geral">Falar com o corretor</a></div>
-      <div class="hnums">${IM.length?`<div><b>${IM.length}</b><span>imóveis em agenciamento</span></div>`:''}<div><b>${CFG.cidades.length}</b><span>cidades atendidas</span></div><div><b>CAIXA</b><span>financiamento e FGTS</span></div></div></div>
-    <div class="hfoto"><span class="fr1" aria-hidden="true"></span><span class="fr2" aria-hidden="true"></span><div class="ph"><img src="anderson-retrato.jpg" alt="Anderson Alves, corretor de imóveis" width="1086" height="1448"></div><div class="tagc"><i>Corretor Especialista</i><b>Anderson Alves</b><span>Innovar Imobiliária · ${esc(CFG.creci)}</span></div></div>
+  return `<section class="hero pmh" ${heroBg()}><div class="wrap">
+    <h1>Encontre seu imóvel agora</h1>
+    <p class="lead">Imóveis, cartas de crédito e investimentos em Sapucaia do Sul, no Vale dos Sinos e na Grande Porto Alegre.</p>
+    ${buscaBox()}
+    <div class="hlinks"><a data-go="descubra">Quanto posso financiar</a><a data-go="consorcio">Cartas de crédito</a><a data-lead="vender">Quero vender meu imóvel</a></div>
   </div></section>
-  <section class="hsearch"><div class="wrap">${buscaBox()}</div></section>
   ${iscaBanner()}
   ${vs.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Para você</p><h2>Vistos recentemente</h2></div></div>${rail(vs)}</div></section>`:''}
   ${parecidos.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Baseado no que você viu</p><h2>Parecidos em ${esc(base.cid)}</h2></div></div>${rail(parecidos)}</div></section>`:''}
@@ -536,6 +597,7 @@ function vInicio(){
   <section class="blk"><div class="wrap two">${vSimBox()}${vConsBox()}</div></section>
 `;
 }
+function heroBg(){const f=IM.find(i=>(i.img||[]).length);const u=f&&(f.img[0][1]||f.img[0][0]);return u?`style="--hbg:url('${esc(u)}')"`:''}
 function buscaBox(){
   return `<form class="search" id="sForm" role="search">
     <div class="tabs" role="group" aria-label="Tipo de negócio">${[['venda','Comprar'],['aluguel','Alugar'],['vender','Vender ou alugar o meu']].map(([k,l])=>`<button type="button" data-str="${k}" aria-pressed="${S.tr===k}">${l}</button>`).join('')}</div>
