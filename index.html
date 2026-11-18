@@ -569,6 +569,22 @@ footer{box-shadow:inset 0 12px 24px -12px rgba(0,0,0,.25)}
 .imobbg .wrap{position:relative;z-index:1}
 .imobbg{padding-bottom:110px}
 @media (max-width:640px){.hero.pmh::before{height:42%}.imobbg::before{height:200px}}
+/* imagem certa para cada tela: celular, tablet e notebook */
+.rimg{--img:var(--c)}
+@media (max-width:640px) and (min-resolution:2dppx){.rimg{--img:var(--t)}}
+@media (min-width:641px){.rimg{--img:var(--t)}}
+@media (min-width:1025px){.rimg{--img:var(--n)}}
+@media (min-width:641px) and (max-width:1024px) and (min-resolution:2dppx){.rimg{--img:var(--n)}}
+/* FOTOS REAIS */
+.hero.pmh{background:linear-gradient(180deg,rgba(46,74,160,.66) 0%,rgba(78,113,207,.48) 42%,rgba(150,185,248,.30) 78%,rgba(245,248,253,.9) 100%),var(--img) center 60%/cover no-repeat}
+.hero.pmh::before{display:none!important}
+.hero.pmh h1{text-shadow:0 1px 0 #DDE7FB,0 2px 0 #C3D3F5,0 3px 0 #A9BFEE,0 4px 0 #8FAAE6,0 10px 18px rgba(10,25,70,.55),0 22px 40px rgba(10,25,70,.4)}
+.hero.pmh .lead{text-shadow:0 1px 3px rgba(10,25,70,.6)}
+.hlinks a{color:#1B2F6B;background:rgba(255,255,255,.7);padding:4px 10px;border-radius:999px;text-decoration:none;box-shadow:0 4px 10px -6px rgba(10,25,70,.5)}
+.imobbg{background:linear-gradient(180deg,var(--bg) 0%,rgba(245,248,253,.88) 30%,rgba(235,243,255,.80) 100%),var(--img) center/cover no-repeat}
+.imobbg::before{display:none}
+.invest::before{background:var(--img) center/cover no-repeat;opacity:.30;filter:saturate(.9) hue-rotate(-8deg)}
+@media (max-width:640px){.hero.pmh{background-position:center,62% center}}
 </style>
 <meta property="og:title" content="PROIMOB INVESTIMENTOS · Anderson Alves">
 <meta property="og:description" content="Casas, apartamentos, terrenos e lançamentos na região metropolitana de Porto Alegre, com simulação e atendimento direto do corretor.">
@@ -705,13 +721,13 @@ function vInicio(){
   const cnt=c=>IM.filter(i=>i.cid===c).length;
   const est=[['Primeiro imóvel','Até R$ 275 mil, com Minha Casa Minha Vida e FGTS.',{max:275000}],['Casas com pátio','Casas e sobrados para a família crescer.',{tipo:'Casa'}],['Apartamentos','Perto do centro, do trem e do trabalho.',{tipo:'Apartamento'}],['Alto padrão','Acima de R$ 900 mil, com acabamento superior.',{min:900000}],['Terrenos','Para construir do seu jeito ou investir.',{tipo:'Terreno'}],['Para investir','Imóveis comerciais e salas para renda.',{tipo:'Comercial'}]];
   window._EST=est;
-  return `<section class="hero pmh" ${heroBg()}><div class="wrap">
+  return `<section class="hero pmh rimg" style="--c:url('img/hero-casa-cel.webp');--t:url('img/hero-casa-tab.webp');--n:url('img/hero-casa-note.webp')"><div class="wrap">
     <h1>Encontre seu imóvel agora</h1>
     <p class="lead">Imóveis, cartas de crédito e investimentos em Sapucaia do Sul, no Vale dos Sinos e na Grande Porto Alegre.</p>
     ${buscaBox()}
     <div class="hlinks"><a data-go="descubra">Quanto posso financiar</a><a data-go="consorcio">Cartas de crédito</a><a data-lead="vender">Quero vender meu imóvel</a></div>
   </div></section>
-  <section class="blk imobbg"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Disponíveis agora</p><h2>Imóveis à venda e para alugar</h2></div>${IM.length?`<button class="btn sm" data-go="busca" data-tr="venda">Ver todos</button>`:''}</div>
+  <section class="blk imobbg rimg" style="--c:url('img/interior-cel.webp');--t:url('img/interior-tab.webp');--n:url('img/interior-note.webp')"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Disponíveis agora</p><h2>Imóveis à venda e para alugar</h2></div>${IM.length?`<button class="btn sm" data-go="busca" data-tr="venda">Ver todos</button>`:''}</div>
     ${IM.length?rail(IM.slice(0,12)):`<div class="agv"><div><h3>Carteira exclusiva em atualização</h3><p>Estou selecionando os imóveis que agencio pessoalmente. Enquanto isso, me diga o que você procura e eu busco para você, ou traga o seu imóvel para o agenciamento em parceria.</p></div><div class="row"><button class="btn or" type="button" data-lead="encomenda">Procuro um imóvel</button><button class="btn" type="button" data-lead="vender">Quero vender ou alugar o meu</button></div></div>`}</div></section>
   ${iscaBanner()}
   ${vs.length?`<section class="blk"><div class="wrap"><div class="blk-head"><div><p class="eyebrow">Para você</p><h2>Vistos recentemente</h2></div></div>${rail(vs)}</div></section>`:''}
@@ -842,8 +858,8 @@ function vPriv(){return `<div class="wrap" style="max-width:760px"><nav class="c
   <p><b>Por quanto tempo:</b> enquanto houver atendimento ativo ou até você pedir a exclusão.</p>
   <p><b>Seus direitos:</b> pedir acesso, correção ou exclusão dos seus dados a qualquer momento, pelo WhatsApp acima.</p>
   <p><b>Neste aparelho:</b> o site guarda, só no seu navegador, os imóveis que você viu e favoritou, para mostrar sugestões. Você pode apagar limpando os dados do navegador.</p></div></div>`}
-function vConsorcio(){return `<div class="invest pg"><div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Cartas de crédito e Investimentos</span></nav>${vConsBox()}</div></div>`}
-function vInvest(){return `<section class="invest" aria-label="Setor de investimentos"><div class="wrap"><div class="invhead"><img src="logos/consorcios-investimentos.jpg" alt="" width="264" height="207" loading="lazy"><div><p class="eyebrow">Setor de investimentos</p><h2>Cartas de crédito e Investimentos</h2><p>Consórcio para imóvel, carro ou empresa, cartas contempladas e planejamento patrimonial com segurança e confiança.</p></div></div>${vConsBox()}</div></section>`}
+function vConsorcio(){return `<div class="invest pg rimg" style="--c:url('img/mercado-cel.webp');--t:url('img/mercado-tab.webp');--n:url('img/mercado-note.webp')"><div class="wrap"><nav class="crumb"><a data-go="inicio">Início</a>›<span>Cartas de crédito e Investimentos</span></nav>${vConsBox()}</div></div>`}
+function vInvest(){return `<section class="invest rimg" style="--c:url('img/mercado-cel.webp');--t:url('img/mercado-tab.webp');--n:url('img/mercado-note.webp')" aria-label="Setor de investimentos"><div class="wrap"><div class="invhead"><img src="logos/consorcios-investimentos.jpg" alt="" width="264" height="207" loading="lazy"><div><p class="eyebrow">Setor de investimentos</p><h2>Cartas de crédito e Investimentos</h2><p>Consórcio para imóvel, carro ou empresa, cartas contempladas e planejamento patrimonial com segurança e confiança.</p></div></div>${vConsBox()}</div></section>`}
 
 /* ======== RENDER / ROTAS ======== */
 function render(){
